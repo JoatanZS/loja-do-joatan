@@ -66,9 +66,7 @@
             text-shadow: 0 0 12px rgba(0, 102, 255, 0.8); 
             transition: 0.3s;
         }
-        .logo a:hover {
-            color: #3377ff;
-        }
+        .logo a:hover { color: #3377ff; }
 
         .user-auth-area {
             display: flex;
@@ -107,32 +105,21 @@
             flex: 1; 
         }
 
-        /* Banner de Boas-Vindas Dinâmico */
+        /* Banner de Boas-Vindas Dinâmico com Contador */
         .welcome-banner {
             background: linear-gradient(145deg, rgba(11, 19, 38, 0.85), rgba(4, 8, 20, 0.95));
             border: 1px solid rgba(0, 102, 255, 0.3);
             border-radius: 16px;
-            padding: 30px;
+            padding: 35px;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
         }
 
-        .welcome-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 102, 255, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
         .welcome-banner h2 {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 700;
             margin-bottom: 8px;
             color: #ffffff;
@@ -140,6 +127,52 @@
 
         .welcome-banner p {
             font-size: 14px;
+            color: #88aacc;
+            margin-bottom: 15px;
+        }
+
+        .offer-tag {
+            display: inline-block;
+            background: rgba(0, 102, 255, 0.15);
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            color: #3377ff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        /* Seção de Selos de Confiança (Vantagens) */
+        .features-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 45px;
+        }
+
+        .feature-item {
+            background: rgba(11, 19, 38, 0.5);
+            border: 1px solid rgba(0, 102, 255, 0.15);
+            padding: 18px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 26px;
+        }
+
+        .feature-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .feature-text p {
+            font-size: 12px;
             color: #88aacc;
         }
 
@@ -167,6 +200,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
+            margin-bottom: 50px;
         }
 
         /* Card de Produto com Efeito de Elevação */
@@ -271,6 +305,49 @@
             box-shadow: 0 0 12px rgba(0, 102, 255, 0.6);
         }
 
+        /* Seção de Prova Social (Depoimentos) */
+        .testimonials-section {
+            background: linear-gradient(145deg, rgba(11, 19, 38, 0.8), rgba(4, 8, 20, 0.9));
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .testimonial-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .testimonial-stars {
+            color: #ffcc00;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .testimonial-text {
+            font-size: 13px;
+            color: #aabccd;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3377ff;
+        }
+
         /* Footer */
         footer { 
             background: #000814; 
@@ -321,11 +398,39 @@
     </header>
 
     <main class="animated">
+        <!-- Banner Principal -->
         <div class="welcome-banner">
             <h2>Bem-vindo à LOJA DO JOATAN!</h2>
-            <p>Aproveite nossas ofertas exclusivas com entrega rápida.</p>
+            <p>Encontre os melhores produtos com exclusividade e atendimento dedicado.</p>
+            <div class="offer-tag">⚡ Ofertas válidas enquanto durarem os estoques</div>
         </div>
 
+        <!-- Barra de Vantagens / Confiança -->
+        <div class="features-bar">
+            <div class="feature-item">
+                <div class="feature-icon">🚚</div>
+                <div class="feature-text">
+                    <h4>Entrega Rápida</h4>
+                    <p>Agilidade e cuidado no envio</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-text">
+                    <h4>Compra Segura</h4>
+                    <p>Ambiente protegido e confiável</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💬</div>
+                <div class="feature-text">
+                    <h4>Suporte Humanizado</h4>
+                    <p>Atendimento direto via WhatsApp</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade com os 6 Produtos -->
         <div class="section-title">Produtos em Destaque</div>
 
         <div class="products-grid">
@@ -418,6 +523,23 @@
                     </div>
                 </div>
             </a>
+        </div>
+
+        <!-- Seção de Depoimentos / Prova Social -->
+        <div class="testimonials-section">
+            <div class="section-title" style="margin-bottom: 15px;">O que dizem nossos clientes</div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"Comprei a pelúcia e chegou super rápido, qualidade impecável. Recomendo muito a loja!"</div>
+                    <div class="testimonial-author">- Mariana S.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"Atendimento excelente pelo WhatsApp e o produto veio bem embalado. Nota 10!"</div>
+                    <div class="testimonial-author">- Carlos Eduardo</div>
+                </div>
+            </div>
         </div>
     </main>
 
