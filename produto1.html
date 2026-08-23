@@ -8,98 +8,226 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', Arial, sans-serif; background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%); color: white; min-height: 100vh; }
         
-        header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #003366, #001a33, #000a1a); border-bottom: 2px solid rgba(0, 102, 255, 0.4); }
-        header h1 { font-family: 'Goudy Bookletter 1911', 'Goudy Old Style', Georgia, serif; font-size: 45px; font-weight: normal; }
-        header h1 a { color: white; text-decoration: none; text-shadow: 0 0 15px rgba(0, 102, 255, 0.8); }
+        body { 
+            font-family: 'Poppins', Arial, sans-serif; 
+            background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%); 
+            color: white; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
 
-        .container-detalhes { max-width: 900px; margin: 50px auto; padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: linear-gradient(145deg, #0b1326, #040814); border: 1px solid rgba(0, 102, 255, 0.35); border-radius: 22px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 102, 255, 0.12); }
+        header { 
+            background: linear-gradient(135deg, #001a33 0%, #000a1a 100%); 
+            border-bottom: 1px solid rgba(0, 102, 255, 0.3); 
+            padding: 15px 30px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
 
-        /* ESTILO DA FOTO DO PRODUTO */
-        .foto-container { position: relative; width: 100%; height: 350px; cursor: pointer; overflow: hidden; border-radius: 17px; border: 1px solid rgba(0, 102, 255, 0.3); }
-        .foto-produto-detalhe { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .foto-container:hover .foto-produto-detalhe { transform: scale(1.05); }
-        .dica-zoom { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: #fff; padding: 5px 10px; border-radius: 20px; font-size: 11px; }
+        .logo h1 { font-family: 'Goudy Bookletter 1911', serif; font-size: 28px; font-weight: normal; letter-spacing: 2px; }
+        .logo a { color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(0, 102, 255, 0.8); }
 
-        .info-produto { display: flex; flex-direction: column; justify-content: center; }
-        .info-produto h2 { font-size: 28px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0, 102, 255, 0.5); }
-        .preco { font-size: 26px; color: #3377ff; font-weight: 700; margin-bottom: 20px; }
-        .descricao { color: #d7d7d7; line-height: 1.6; font-size: 15px; margin-bottom: 30px; }
+        .btn-back { color: #88aacc; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .btn-back:hover { color: #ffffff; }
 
-        .botao-comprar { display: block; background: linear-gradient(135deg, #0055ff, #002b80); color: white; text-decoration: none; text-align: center; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 16px; box-shadow: 0 5px 15px rgba(0, 102, 255, 0.35); transition: 0.3s; margin-bottom: 15px; }
-        .botao-comprar:hover { transform: scale(1.03); background: linear-gradient(135deg, #3377ff, #003d99); box-shadow: 0 8px 25px rgba(0, 102, 255, 0.55); }
-        .botao-voltar { display: inline-block; color: #8a9bbd; text-decoration: none; font-size: 14px; text-align: center; transition: 0.2s; }
-        .botao-voltar:hover { color: white; }
+        main { padding: 40px 20px; max-width: 1000px; margin: 0 auto; width: 100%; flex: 1; }
 
-        /* MODAL DA FOTO EXPANDIDA (TELA CHEIA) */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
-        .modal-conteudo { position: relative; max-width: 90%; max-height: 85vh; background: #fff; padding: 8px; border-radius: 16px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.2); }
-        .modal-conteudo img { max-width: 100%; max-height: 80vh; border-radius: 12px; display: block; }
-        .fechar-modal { position: absolute; top: -15px; right: -15px; background: #000; color: #fff; border: 2px solid #fff; border-radius: 50%; width: 35px; height: 35px; font-size: 18px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        /* CONTAINER DO PRODUTO */
+        .product-container {
+            background: linear-gradient(145deg, #0b1326, #040814);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
 
         @media (max-width: 768px) {
-            .container-detalhes { grid-template-columns: 1fr; margin: 20px 15px; padding: 20px; }
-            .foto-container { height: 280px; }
+            .product-container { grid-template-columns: 1fr; }
         }
+
+        /* GALERIA DE FOTOS */
+        .gallery { display: flex; flex-direction: column; gap: 15px; }
+        .main-img-box {
+            width: 100%;
+            height: 350px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 102, 255, 0.25);
+            background: #000;
+        }
+        .main-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .main-img-box:hover img { transform: scale(1.05); }
+
+        .thumbnails { display: flex; gap: 10px; }
+        .thumb {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            border: 2px solid rgba(0, 102, 255, 0.2);
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.3s;
+            opacity: 0.6;
+        }
+        .thumb.active, .thumb:hover { border-color: #0066ff; opacity: 1; }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* DETALHES DO PRODUTO */
+        .product-info { display: flex; flex-direction: column; justify-content: space-between; }
+        .product-title { font-size: 26px; font-weight: 700; margin-bottom: 10px; }
+        .product-badge { display: inline-block; background: rgba(0, 102, 255, 0.2); border: 1px solid rgba(0, 102, 255, 0.4); color: #3377ff; font-size: 12px; padding: 4px 10px; border-radius: 12px; margin-bottom: 15px; width: fit-content; }
+        
+        .price-box { margin-bottom: 20px; }
+        .price-old { font-size: 14px; color: #6688aa; text-decoration: line-through; }
+        .price-current { font-size: 32px; font-weight: 800; color: #3377ff; }
+
+        .description { font-size: 14px; color: #aabccd; line-height: 1.6; margin-bottom: 20px; }
+
+        /* SELEÇÃO DE QUANTIDADE */
+        .quantity-selector { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .quantity-selector label { font-size: 14px; color: #88aacc; }
+        .qty-btn { background: rgba(0, 102, 255, 0.2); border: 1px solid rgba(0, 102, 255, 0.4); color: white; width: 32px; height: 32px; border-radius: 6px; font-size: 18px; cursor: pointer; transition: 0.3s; }
+        .qty-btn:hover { background: #0066ff; }
+        .qty-value { font-weight: 700; font-size: 16px; width: 25px; text-align: center; }
+
+        /* SIMULADOR DE FRETE */
+        .shipping-box { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(0, 102, 255, 0.15); padding: 15px; border-radius: 10px; margin-bottom: 25px; }
+        .shipping-box label { display: block; font-size: 12px; color: #88aacc; margin-bottom: 6px; }
+        .shipping-input-group { display: flex; gap: 8px; }
+        .shipping-input { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 102, 255, 0.3); border-radius: 6px; padding: 8px; color: white; font-size: 13px; outline: none; width: 100%; }
+        .btn-calc { background: rgba(0, 102, 255, 0.3); border: 1px solid #0066ff; color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; transition: 0.3s; }
+        .btn-calc:hover { background: #0066ff; }
+        .shipping-result { font-size: 12px; color: #25d366; margin-top: 8px; display: none; }
+
+        /* BOTÃO DE COMPRA */
+        .btn-buy-whats { display: block; width: 100%; text-align: center; background: linear-gradient(135deg, #0055ff, #002b80); color: #ffffff; text-decoration: none; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4); }
+        .btn-buy-whats:hover { background: linear-gradient(135deg, #3377ff, #003d99); transform: translateY(-2px); }
+
+        footer { background: #000814; border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 20px; text-align: center; font-size: 12px; color: #6688aa; margin-top: 40px; }
     </style>
 </head>
 
 <body>
 
     <header>
-        <h1><a href="index.html">LOJA DO JOATAN</a></h1>
+        <div class="logo">
+            <h1><a href="index.html">LOJA DO JOATAN</a></h1>
+        </div>
+        <a href="index.html" class="btn-back">← Voltar para a Loja</a>
     </header>
 
-    <main class="container-detalhes">
-        
-        <!-- Clique para expandir -->
-        <div class="foto-container" onclick="abrirModal()">
-            <img src="s-l960.jpg" alt="Pelúcia Homem Aranha" class="foto-produto-detalhe">
-            <span class="dica-zoom">🔍 Clique para ampliar</span>
-        </div>
-
-        <div class="info-produto">
-            <h2>Pelúcia Homem Aranha</h2>
+    <main>
+        <div class="product-container">
             
-            <div class="preco">R$ 149,90</div>
+            <!-- GALERIA -->
+            <div class="gallery">
+                <div class="main-img-box">
+                    <img id="main-image" src="s-l960.jpg" alt="Pelúcia Homem Aranha">
+                </div>
+                <div class="thumbnails">
+                    <div class="thumb active" onclick="trocarImagem(this, 's-l960.jpg')">
+                        <img src="s-l960.jpg" alt="Foto 1">
+                    </div>
+                    <!-- Pode adicionar mais fotos aqui se quiser -->
+                </div>
+            </div>
 
-            <p class="descricao">
-                Pelúcia oficial Homem Aranha, ideal para presentes e colecionadores. Feita com material antialérgico, super macia e acabamento de alta qualidade.
-            </p>
+            <!-- INFORMAÇÕES DO PRODUTO -->
+            <div class="product-info">
+                <div>
+                    <span class="product-badge">🔥 Item Em Destaque</span>
+                    <h2 class="product-title">Pelúcia Homem Aranha</h2>
+                    
+                    <div class="price-box">
+                        <div class="price-old">De R$ 189,90 por</div>
+                        <div class="price-current" id="product-price">R$ 149,90</div>
+                    </div>
 
-            <a href="https://wa.me/5592993956270?text=Olá!%20Tenho%20interesse%20na%20Pelúcia%20Homem%20Aranha." 
-               class="botao-comprar" 
-               target="_blank">
-                💬 Comprar pelo WhatsApp
-            </a>
+                    <p class="description">
+                        Pelúcia oficial Homem Aranha, ideal para presentes e colecionadores. Feita com material antialérgico, super macia e acabamento premium de alta durabilidade.
+                    </p>
 
-            <a href="index.html" class="botao-voltar">← Voltar para a loja</a>
+                    <!-- QUANTIDADE -->
+                    <div class="quantity-selector">
+                        <label>Quantidade:</label>
+                        <button class="qty-btn" onclick="alterarQtd(-1)">-</button>
+                        <span class="qty-value" id="qty-val">1</span>
+                        <button class="qty-btn" onclick="alterarQtd(1)">+</button>
+                    </div>
+
+                    <!-- FRETE -->
+                    <div class="shipping-box">
+                        <label>Calcular prazo e frete:</label>
+                        <div class="shipping-input-group">
+                            <input type="text" class="shipping-input" id="cep-input" placeholder="Digite seu CEP (ex: 69000-000)">
+                            <button class="btn-calc" onclick="calcularFrete()">Calcular</button>
+                        </div>
+                        <div class="shipping-result" id="shipping-result"></div>
+                    </div>
+                </div>
+
+                <!-- AÇÃO DE COMPRA -->
+                <a id="buy-btn" href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20comprar%201x%20Pelúcia%20Homem%20Aranha%20por%20R$%20149,90" target="_blank" class="btn-buy-whats">
+                    💬 Comprar pelo WhatsApp
+                </a>
+            </div>
+
         </div>
-
     </main>
 
-    <!-- JANELA MODAL PARA VER A FOTO AMPLIADA -->
-    <div id="meuModal" class="modal" onclick="fecharModal()">
-        <div class="modal-conteudo" onclick="event.stopPropagation()">
-            <button class="fechar-modal" onclick="fecharModal()">✕</button>
-            <img src="s-l960.jpg" alt="Pelúcia Homem Aranha Ampliada">
-        </div>
-    </div>
+    <footer>
+        &copy; LOJA DO JOATAN - Todos os direitos reservados.
+    </footer>
 
     <script>
-        function abrirModal() {
-            document.getElementById("meuModal").style.display = "flex";
+        const PRECO_UNITARIO = 149.90;
+        let quantidade = 1;
+
+        function trocarImagem(element, src) {
+            document.getElementById('main-image').src = src;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
         }
 
-        function fecharModal() {
-            document.getElementById("meuModal").style.display = "none";
+        function alterarQtd(valor) {
+            if (quantidade + valor >= 1) {
+                quantidade += valor;
+                document.getElementById('qty-val').innerText = quantidade;
+                
+                const total = (quantidade * PRECO_UNITARIO).toFixed(2).replace('.', ',');
+                document.getElementById('product-price').innerText = `R$ ${total}`;
+
+                // Atualiza o link do WhatsApp com a nova quantidade
+                const msg = encodeURIComponent(`Olá! Gostaria de comprar ${quantidade}x Pelúcia Homem Aranha por R$ ${total}`);
+                document.getElementById('buy-btn').href = `https://wa.me/5592993956270?text=${msg}`;
+            }
+        }
+
+        function calcularFrete() {
+            const cep = document.getElementById('cep-input').value.replace(/\D/g, '');
+            const resultBox = document.getElementById('shipping-result');
+
+            if (cep.length === 8) {
+                resultBox.style.display = 'block';
+                resultBox.innerHTML = '🚚 <strong>Frete Rápido:</strong> R$ 15,00 (Entrega em 2 a 4 dias úteis)';
+            } else {
+                resultBox.style.display = 'block';
+                resultBox.style.color = '#ff6b6b';
+                resultBox.innerHTML = '⚠️ Digite um CEP válido com 8 números.';
+            }
         }
     </script>
-
 </body>
+
 </html>
