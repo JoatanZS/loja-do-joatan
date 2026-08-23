@@ -94,7 +94,50 @@
         .btn-buy-whats { display: block; text-align: center; background: linear-gradient(135deg, #0055ff, #002b80); color: #ffffff; text-decoration: none; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 10px rgba(0, 102, 255, 0.3); }
         .btn-buy-whats:hover { background: linear-gradient(135deg, #3377ff, #003d99); transform: scale(1.02); }
 
-        footer { background: #000814; border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 20px; text-align: center; font-size: 12px; color: #6688aa; margin-top: 40px; }
+        /* BOTÃO FLUTUANTE DO WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+            background-color: #20ba5a;
+        }
+
+        /* SELOS NO RODAPÉ */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #88aacc;
+            flex-wrap: wrap;
+        }
+        .badge-item {
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        footer { background: #000814; border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 25px 20px; text-align: center; font-size: 12px; color: #6688aa; margin-top: 40px; }
     </style>
 </head>
 
@@ -215,7 +258,17 @@
         </div>
     </main>
 
+    <!-- BOTÃO FLUTUANTE DE SUPORTE -->
+    <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida." target="_blank" class="whatsapp-float">
+        💬 Dúvidas? Fale Conosco
+    </a>
+
     <footer>
+        <div class="trust-badges">
+            <span class="badge-item">⚡ Entrega Rápida</span>
+            <span class="badge-item">🔒 Compra Segura</span>
+            <span class="badge-item">💳 Pix & Cartão</span>
+        </div>
         &copy; LOJA DO JOATAN - Todos os direitos reservados.
     </footer>
 
@@ -261,3 +314,4 @@
 </body>
 
 </html>
+                    
