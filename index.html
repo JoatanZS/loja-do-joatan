@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -5,9 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Loja do Joatan</title>
+    <title>LOJA DO JOATAN</title>
+
+    <!-- Fonte cursiva -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -15,153 +24,373 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f6fa;
-            color: #222;
+            font-family: 'Poppins', Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #8b2cff 0%, #3b126b 35%, #160020 100%);
+            color: white;
+            min-height: 100vh;
         }
 
-        /* CABEÇALHO */
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
         header {
-            background-color: #111827;
-            color: white;
+            position: relative;
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px 70px;
+
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 105, 220, 0.35), transparent 25%),
+                radial-gradient(circle at 80% 20%, rgba(120, 80, 255, 0.4), transparent 30%),
+                linear-gradient(135deg, #5b16a8, #210034);
+
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+
+            overflow: hidden;
         }
+
+
+        /* BRILHOS DO CABEÇALHO */
+
+        header::before {
+            content: "✦  ✧  ✦  ✧  ✦  ✧  ✦";
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+
+            font-size: 22px;
+            color: #ffffff;
+            opacity: 0.8;
+
+            letter-spacing: 25px;
+        }
+
 
         header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
+            font-family: 'Lobster', cursive;
+
+            font-size: clamp(50px, 8vw, 85px);
+
+            color: white;
+
+            text-shadow:
+                0 3px 0 #7c35c7,
+                0 6px 15px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(255, 120, 240, 0.8);
+
+            margin-bottom: 15px;
         }
+
 
         header p {
-            color: #d1d5db;
             font-size: 18px;
+            color: #ffd9fa;
+
+            font-weight: 500;
+
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
-        /* PRODUTOS */
+
+        /* =========================
+           ÁREA DOS PRODUTOS
+        ========================= */
+
         .produtos {
+
             max-width: 1200px;
-            margin: 40px auto;
+
+            margin: 50px auto;
+
             padding: 0 20px;
 
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+
+            gap: 30px;
         }
 
-        /* CARD */
+
+        /* =========================
+           CARD DO PRODUTO
+        ========================= */
+
         .produto {
-            background-color: white;
-            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.16),
+                    rgba(255, 255, 255, 0.06)
+                );
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            border-radius: 22px;
+
             padding: 20px;
 
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
 
-            transition: 0.3s;
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.35),
+                0 0 20px rgba(188, 65, 255, 0.15);
+
+            transition: 0.35s;
         }
+
 
         .produto:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+            transform: translateY(-8px) scale(1.01);
+
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.45),
+                0 0 30px rgba(255, 91, 225, 0.35);
         }
 
-        /* FOTO */
+
+        /* =========================
+           FOTO DO PRODUTO
+        ========================= */
+
         .foto-produto {
+
             width: 100%;
+
             height: 220px;
 
-            background-color: #e5e7eb;
-            border-radius: 12px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #6f20a8,
+                    #301052
+                );
+
+            border-radius: 17px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
-            color: #6b7280;
-            font-size: 18px;
+            color: #f5d9ff;
+
+            font-size: 17px;
 
             margin-bottom: 20px;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            box-shadow:
+                inset 0 0 30px rgba(255, 80, 230, 0.12);
         }
+
+
+        /* =========================
+           NOME DO PRODUTO
+        ========================= */
 
         .produto h2 {
-            font-size: 22px;
+
+            font-family: 'Lobster', cursive;
+
+            font-size: 32px;
+
+            color: #ffffff;
+
             margin-bottom: 10px;
+
+            text-shadow:
+                0 2px 10px rgba(255, 100, 230, 0.5);
         }
 
+
+        /* =========================
+           DESCRIÇÃO
+        ========================= */
+
         .produto p {
-            color: #6b7280;
-            line-height: 1.5;
+
+            color: #eadcf2;
+
+            line-height: 1.6;
+
+            font-size: 15px;
+
             margin-bottom: 20px;
         }
 
-        /* BOTÃO WHATSAPP */
+
+        /* =========================
+           BOTÃO WHATSAPP
+        ========================= */
+
         .botao {
+
             display: block;
 
-            background-color: #16a34a;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff4bd8,
+                    #8b28e8
+                );
+
             color: white;
 
             text-decoration: none;
+
             text-align: center;
 
-            padding: 13px;
+            padding: 14px;
 
-            border-radius: 8px;
+            border-radius: 12px;
 
-            font-weight: bold;
+            font-weight: 700;
+
+            box-shadow:
+                0 5px 15px rgba(255, 60, 220, 0.3);
 
             transition: 0.3s;
         }
 
+
         .botao:hover {
-            background-color: #15803d;
+
+            transform: scale(1.03);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff75e3,
+                    #a848ff
+                );
+
+            box-shadow:
+                0 8px 25px rgba(255, 70, 225, 0.5);
         }
 
-        /* RODAPÉ */
+
+        /* =========================
+           RODAPÉ
+        ========================= */
+
         footer {
-            background-color: #111827;
-            color: #9ca3af;
+
+            background: rgba(10, 0, 20, 0.7);
+
+            color: #cdbbd6;
 
             text-align: center;
 
-            padding: 25px;
+            padding: 30px 20px;
 
-            margin-top: 50px;
+            margin-top: 60px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* TABLET */
-        @media (max-width: 800px) {
+
+        footer strong {
+
+            font-family: 'Lobster', cursive;
+
+            color: white;
+
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 900px) {
+
             .produtos {
+
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* CELULAR */
-        @media (max-width: 550px) {
-            .produtos {
-                grid-template-columns: 1fr;
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            header {
+
+                padding: 50px 15px 60px;
             }
 
             header h1 {
-                font-size: 28px;
+
+                font-size: 55px;
+            }
+
+            header p {
+
+                font-size: 15px;
+            }
+
+            .produtos {
+
+                grid-template-columns: 1fr;
+
+                padding: 0 15px;
+
+                margin-top: 35px;
+            }
+
+            .produto {
+
+                padding: 18px;
+            }
+
+            .foto-produto {
+
+                height: 210px;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- CABEÇALHO -->
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
+
     <header>
-        <h1>Loja do Joatan</h1>
-        <p>Produtos recomendados para você</p>
+
+        <h1>LOJA DO JOATAN</h1>
+
+        <p>✨ Produtos recomendados para você ✨</p>
+
     </header>
 
 
-    <!-- PRODUTOS -->
+
+    <!-- =========================
+         PRODUTOS
+    ========================= -->
+
     <main class="produtos">
 
+
         <!-- PRODUTO 1 -->
+
         <div class="produto">
 
             <div class="foto-produto">
@@ -171,20 +400,24 @@
             <h2>Produto 1</h2>
 
             <p>
-                Descrição do produto. Aqui vamos colocar
-                as informações principais.
+                Descrição do produto.
+                Aqui vamos colocar as informações principais.
             </p>
 
             <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%201%20está%20disponível."
-               class="botao"
-               target="_blank">
+                class="botao"
+                target="_blank">
+
                 💬 Ver disponibilidade
+
             </a>
 
         </div>
 
 
+
         <!-- PRODUTO 2 -->
+
         <div class="produto">
 
             <div class="foto-produto">
@@ -194,20 +427,24 @@
             <h2>Produto 2</h2>
 
             <p>
-                Descrição do produto. Aqui vamos colocar
-                as informações principais.
+                Descrição do produto.
+                Aqui vamos colocar as informações principais.
             </p>
 
             <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%202%20está%20disponível."
-               class="botao"
-               target="_blank">
+                class="botao"
+                target="_blank">
+
                 💬 Ver disponibilidade
+
             </a>
 
         </div>
 
 
+
         <!-- PRODUTO 3 -->
+
         <div class="produto">
 
             <div class="foto-produto">
@@ -217,20 +454,24 @@
             <h2>Produto 3</h2>
 
             <p>
-                Descrição do produto. Aqui vamos colocar
-                as informações principais.
+                Descrição do produto.
+                Aqui vamos colocar as informações principais.
             </p>
 
             <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%203%20está%20disponível."
-               class="botao"
-               target="_blank">
+                class="botao"
+                target="_blank">
+
                 💬 Ver disponibilidade
+
             </a>
 
         </div>
 
 
+
         <!-- PRODUTO 4 -->
+
         <div class="produto">
 
             <div class="foto-produto">
@@ -240,20 +481,24 @@
             <h2>Produto 4</h2>
 
             <p>
-                Descrição do produto. Aqui vamos colocar
-                as informações principais.
+                Descrição do produto.
+                Aqui vamos colocar as informações principais.
             </p>
 
             <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%204%20está%20disponível."
-               class="botao"
-               target="_blank">
+                class="botao"
+                target="_blank">
+
                 💬 Ver disponibilidade
+
             </a>
 
         </div>
 
 
+
         <!-- PRODUTO 5 -->
+
         <div class="produto">
 
             <div class="foto-produto">
@@ -263,20 +508,24 @@
             <h2>Produto 5</h2>
 
             <p>
-                Descrição do produto. Aqui vamos colocar
-                as informações principais.
+                Descrição do produto.
+                Aqui vamos colocar as informações principais.
             </p>
 
             <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%205%20está%20disponível."
-               class="botao"
-               target="_blank">
+                class="botao"
+                target="_blank">
+
                 💬 Ver disponibilidade
+
             </a>
 
         </div>
 
 
+
         <!-- PRODUTO 6 -->
+
         <div class="produto">
 
             <div class="foto-produto">
@@ -286,26 +535,40 @@
             <h2>Produto 6</h2>
 
             <p>
-                Descrição do produto. Aqui vamos colocar
-                as informações principais.
+                Descrição do produto.
+                Aqui vamos colocar as informações principais.
             </p>
 
             <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%206%20está%20disponível."
-               class="botao"
-               target="_blank">
+                class="botao"
+                target="_blank">
+
                 💬 Ver disponibilidade
+
             </a>
 
         </div>
 
+
     </main>
 
 
-    <!-- RODAPÉ -->
+
+    <!-- =========================
+         RODAPÉ
+    ========================= -->
+
     <footer>
-        <p>© 2026 Loja do Joatan — Todos os direitos reservados.</p>
+
+        <p>
+            © 2026 <strong>LOJA DO JOATAN</strong>
+            — Todos os direitos reservados.
+        </p>
+
     </footer>
+
 
 </body>
 
 </html>
+```
