@@ -4,630 +4,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>LOJA DO JOATAN</title>
 
-    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-
-        /* =========================
-           CONFIGURAÇÃO GERAL
-        ========================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-
-            background:
-                radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%);
-
-            color: white;
-
-            min-height: 100vh;
-        }
-
-
-        /* =========================
-           CABEÇALHO
-        ========================= */
-
-        header {
-
-            position: relative;
-
-            text-align: center;
-
-            padding: 60px 20px 70px;
-
-            background:
-                radial-gradient(
-                    circle at 20% 30%,
-                    rgba(0, 102, 255, 0.35),
-                    transparent 25%
-                ),
-
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(0, 51, 153, 0.4),
-                    transparent 30%
-                ),
-
-                linear-gradient(
-                    135deg,
-                    #003366,
-                    #001a33,
-                    #000a1a
-                );
-
-            border-bottom: 2px solid rgba(0, 102, 255, 0.4);
-
-            overflow: hidden;
-        }
-
-
-        /* Brilhos */
-
-        header::before {
-
-            content: "✦  ✧  ✦  ✧  ✦  ✧  ✦";
-
-            position: absolute;
-
-            top: 15px;
-            left: 0;
-
-            width: 100%;
-
-            font-size: 22px;
-
-            color: #ffffff;
-
-            opacity: 0.8;
-
-            letter-spacing: 25px;
-        }
-
-
-        /* Nome da loja */
-
-        header h1 {
-
-            font-family: 'Goudy Bookletter 1911', 'Goudy Old Style', Georgia, serif;
-
-            font-size: clamp(45px, 7vw, 75px);
-
-            font-weight: normal;
-
-            color: white;
-
-            text-shadow:
-
-                0 3px 0 #001a33,
-
-                0 6px 15px rgba(0, 0, 0, 0.7),
-
-                0 0 20px rgba(0, 102, 255, 0.8);
-
-            margin-bottom: 15px;
-        }
-
-
-        header p {
-
-            font-size: 18px;
-
-            color: #d0e1ff;
-
-            font-weight: 500;
-
-            text-shadow:
-                0 2px 8px rgba(0, 0, 0, 0.6);
-        }
-
-
-        /* =========================
-           PRODUTOS
-        ========================= */
-
-        .produtos {
-
-            max-width: 1200px;
-
-            margin: 50px auto;
-
-            padding: 0 20px;
-
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 30px;
-        }
-
-
-        /* =========================
-           CARD PRETO
-        ========================= */
-
-        .produto {
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #0b1326,
-                    #040814
-                );
-
-            border: 1px solid rgba(0, 102, 255, 0.35);
-
-            border-radius: 22px;
-
-            padding: 20px;
-
-            box-shadow:
-
-                0 10px 35px rgba(0, 0, 0, 0.7),
-
-                0 0 20px rgba(0, 102, 255, 0.12);
-
-            transition: 0.35s;
-        }
-
-
-        /* Efeito ao passar o mouse */
-
-        .produto:hover {
-
-            transform:
-                translateY(-8px)
-                scale(1.01);
-
-            border-color:
-                rgba(0, 132, 255, 0.8);
-
-            box-shadow:
-
-                0 18px 40px rgba(0, 0, 0, 0.8),
-
-                0 0 30px rgba(0, 102, 255, 0.35);
-        }
-
-
-        /* =========================
-           FOTO
-        ========================= */
-
-        .foto-produto {
-
-            width: 100%;
-
-            height: 220px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #001a33,
-                    #040a17
-                );
-
-            border-radius: 17px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            color: #b0d0ff;
-
-            font-size: 17px;
-
-            margin-bottom: 20px;
-
-            border:
-                1px solid rgba(0, 102, 255, 0.3);
-
-            box-shadow:
-
-                inset 0 0 30px
-                rgba(0, 102, 255, 0.15);
-        }
-
-
-        /* =========================
-           NOME DO PRODUTO
-        ========================= */
-
-        .produto h2 {
-
-            font-family: 'Poppins', Arial, sans-serif;
-
-            font-size: 28px;
-
-            font-weight: 800;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1.5px;
-
-            color: white;
-
-            margin-bottom: 12px;
-
-            text-shadow:
-
-                0 2px 10px
-                rgba(0, 102, 255, 0.5);
-        }
-
-
-        /* =========================
-           DESCRIÇÃO
-        ========================= */
-
-        .produto p {
-
-            color: #d7d7d7;
-
-            line-height: 1.6;
-
-            font-size: 15px;
-
-            margin-bottom: 20px;
-        }
-
-
-        /* =========================
-           BOTÃO AZUL
-        ========================= */
-
-        .botao {
-
-            display: block;
-
-            background:
-
-                linear-gradient(
-                    135deg,
-                    #0055ff,
-                    #002b80
-                );
-
-            color: white;
-
-            text-decoration: none;
-
-            text-align: center;
-
-            padding: 14px;
-
-            border-radius: 12px;
-
-            font-weight: 700;
-
-            box-shadow:
-
-                0 5px 15px
-                rgba(0, 102, 255, 0.35);
-
-            transition: 0.3s;
-        }
-
-
-        .botao:hover {
-
-            transform:
-                scale(1.03);
-
-            background:
-
-                linear-gradient(
-                    135deg,
-                    #3377ff,
-                    #003d99
-                );
-
-            box-shadow:
-
-                0 8px 25px
-                rgba(0, 102, 255, 0.55);
-        }
-
-
-        /* =========================
-           RODAPÉ
-        ========================= */
-
-        footer {
-
-            background:
-                rgba(2, 6, 18, 0.95);
-
-            color: #aaaaaa;
-
-            text-align: center;
-
-            padding: 30px 20px;
-
-            margin-top: 60px;
-
-            border-top:
-                1px solid
-                rgba(0, 102, 255, 0.25);
-        }
-
-
-        footer strong {
-
-            font-family:
-                'Goudy Bookletter 1911',
-                'Goudy Old Style',
-                Georgia,
-                serif;
-
-            color: white;
-
-            font-size: 20px;
-        }
-
-
-        /* =========================
-           TABLET
-        ========================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', Arial, sans-serif; background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%); color: white; min-height: 100vh; }
+
+        /* CABEÇALHO COMPLETO */
+        header { background: linear-gradient(135deg, #001a33, #000a1a); border-bottom: 1px solid rgba(0, 102, 255, 0.3); padding: 15px 30px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+        
+        .header-top { max-width: 1300px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+
+        /* LOGO E LINKS */
+        .logo-area { display: flex; align-items: center; gap: 25px; }
+        .logo-area h1 { font-family: 'Goudy Bookletter 1911', serif; font-size: 28px; font-weight: normal; }
+        .logo-area h1 a { color: white; text-decoration: none; text-shadow: 0 0 10px rgba(0, 102, 255, 0.8); }
+
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .btn-destaque { background: #0055ff; color: white; padding: 6px 16px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.3s; }
+        .btn-destaque:hover { background: #3377ff; box-shadow: 0 0 12px rgba(0, 102, 255, 0.6); }
+        .link-menu { color: #d7d7d7; text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.2s; }
+        .link-menu:hover { color: white; }
+
+        /* BARRA DE PESQUISA */
+        .search-bar { flex: 1; max-width: 450px; position: relative; }
+        .search-bar input { width: 100%; padding: 10px 15px 10px 40px; border-radius: 25px; border: 1px solid rgba(0, 102, 255, 0.4); background: rgba(255, 255, 255, 0.05); color: white; font-size: 14px; outline: none; transition: 0.3s; }
+        .search-bar input::placeholder { color: #8a9bbd; }
+        .search-bar input:focus { border-color: #0055ff; background: rgba(255, 255, 255, 0.1); box-shadow: 0 0 10px rgba(0, 102, 255, 0.4); }
+        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #8a9bbd; font-size: 14px; }
+
+        /* ÍCONES DA DIREITA */
+        .user-actions { display: flex; align-items: center; gap: 20px; }
+        .action-icon { color: white; text-decoration: none; font-size: 20px; position: relative; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 102, 255, 0.2); transition: 0.3s; }
+        .action-icon:hover { background: rgba(0, 102, 255, 0.3); border-color: #0055ff; }
+        .badge { position: absolute; top: -4px; right: -4px; background: #0055ff; color: white; font-size: 11px; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+        /* CATEGORIAS (MENU INFERIOR) */
+        .header-bottom { max-width: 1300px; margin: 15px auto 0; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: center; gap: 25px; overflow-x: auto; }
+        .categoria-item { color: #a0b2d6; text-decoration: none; font-size: 13px; font-weight: 500; white-space: nowrap; transition: 0.2s; }
+        .categoria-item:hover { color: #3377ff; }
+        .categoria-item.sale { color: #ff4d4d; font-weight: 700; }
+
+        /* GRID DE PRODUTOS */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .titulo-secao { font-size: 24px; font-weight: 700; text-transform: uppercase; margin-bottom: 25px; text-shadow: 0 0 10px rgba(0, 102, 255, 0.5); text-align: center; }
+
+        .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .card-produto { background: linear-gradient(145deg, #0b1326, #040814); border: 1px solid rgba(0, 102, 255, 0.35); border-radius: 18px; padding: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); transition: transform 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-produto:hover { transform: translateY(-7px); border-color: rgba(0, 102, 255, 0.8); }
+
+        .foto-box { width: 100%; height: 220px; border-radius: 12px; overflow: hidden; margin-bottom: 15px; border: 1px solid rgba(0, 102, 255, 0.2); background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; color: #8a9bbd; font-size: 14px; }
+        .foto-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .card-produto:hover .foto-box img { transform: scale(1.06); }
+
+        .card-produto h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #ffffff; }
+        .preco-card { font-size: 20px; color: #3377ff; font-weight: 700; margin-bottom: 15px; }
+
+        .botao-detalhes { display: block; background: linear-gradient(135deg, #0055ff, #002b80); color: white; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        .botao-detalhes:hover { background: linear-gradient(135deg, #3377ff, #003d99); }
 
         @media (max-width: 900px) {
-
-            .produtos {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+            .header-top { flex-wrap: wrap; }
+            .search-bar { order: 3; max-width: 100%; margin-top: 10px; }
+            .nav-links { display: none; }
         }
-
-
-        /* =========================
-           CELULAR
-        ========================= */
-
-        @media (max-width: 600px) {
-
-            header {
-
-                padding:
-                    50px 15px 60px;
-            }
-
-            header h1 {
-
-                font-size: 50px;
-            }
-
-            header p {
-
-                font-size: 15px;
-            }
-
-            .produtos {
-
-                grid-template-columns:
-                    1fr;
-
-                padding:
-                    0 15px;
-
-                margin-top:
-                    35px;
-            }
-
-            .produto {
-
-                padding: 18px;
-            }
-
-            .foto-produto {
-
-                height: 210px;
-            }
-        }
-
     </style>
-
 </head>
-
 
 <body>
 
-
-    <!-- =========================
-         CABEÇALHO
-    ========================= -->
-
     <header>
+        <!-- PARTE SUPERIOR DO HEADER -->
+        <div class="header-top">
+            <div class="logo-area">
+                <h1><a href="index.html">JOATAN</a></h1>
+                <nav class="nav-links">
+                    <a href="#" class="btn-destaque">Venda</a>
+                    <a href="#" class="link-menu">Compre</a>
+                    <a href="#" class="link-menu">Sobre nós</a>
+                </nav>
+            </div>
 
-        <h1>Loja de Compras Online</h1>
+            <!-- BARRA DE BUSCA -->
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Procurar um produto, categoria...">
+            </div>
 
-        <p>
-            🔥 Produtos recomendados para você de alta confiança🔥
-        </p>
+            <!-- ÍCONES -->
+            <div class="user-actions">
+                <a href="#" class="action-icon" title="Minha Conta">👤</a>
+                <a href="#" class="action-icon" title="Favoritos">❤️</a>
+                <a href="#" class="action-icon" title="Carrinho">
+                    🛒
+                    <span class="badge">0</span>
+                </a>
+            </div>
+        </div>
 
+        <!-- CATEGORIAS -->
+        <div class="header-bottom">
+            <a href="#" class="categoria-item sale">Sale 🔥</a>
+            <a href="#" class="categoria-item">Mais Populares</a>
+            <a href="#" class="categoria-item">Recém Chegados</a>
+            <a href="#" class="categoria-item">Pelúcias</a>
+            <a href="#" class="categoria-item">Acessórios</a>
+            <a href="#" class="categoria-item">Colecionáveis</a>
+            <a href="#" class="categoria-item">Ofertas</a>
+        </div>
     </header>
 
+    <main class="container">
+        <h2 class="titulo-secao">Nossos Produtos</h2>
 
+        <div class="grid-produtos">
 
-    <!-- =========================
-         PRODUTOS
-    ========================= -->
-
-    <main class="produtos">
-
-
-        <!-- PRODUTO 1 -->
-
-        <div class="produto">
-
-            <div class="foto-produto">
-                FOTO DO PRODUTO
+            <!-- PRODUTO 1 -->
+            <div class="card-produto">
+                <div>
+                    <div class="foto-box">
+                        <img src="s-l960.jpg" alt="Pelúcia Homem Aranha">
+                    </div>
+                    <h3>Pelúcia Homem Aranha</h3>
+                    <div class="preco-card">R$ 149,90</div>
+                </div>
+                <a href="produto1.html" class="botao-detalhes">Ver mais detalhes</a>
             </div>
 
-            <h2>Produto 1</h2>
-
-            <p>
-                Descrição do produto.
-                Aqui vamos colocar as informações principais.
-            </p>
-
-            <a href="produto1.html" class="botao">
-                🔍 Veja o produto aqui
-            </a>
-
-        </div>
-
-
-
-        <!-- PRODUTO 2 -->
-
-        <div class="produto">
-
-            <div class="foto-produto">
-                FOTO DO PRODUTO
+            <!-- PRODUTO 2 -->
+            <div class="card-produto">
+                <div>
+                    <div class="foto-box">
+                        <img src="produto2.jpg" alt="Produto 2" onerror="this.parentNode.innerHTML='FOTO DO PRODUTO 2'">
+                    </div>
+                    <h3>Produto 2</h3>
+                    <div class="preco-card">R$ 99,90</div>
+                </div>
+                <a href="produto2.html" class="botao-detalhes">Ver mais detalhes</a>
             </div>
 
-            <h2>Produto 2</h2>
-
-            <p>
-                Descrição do produto.
-                Aqui vamos colocar as informações principais.
-            </p>
-
-            <a href="produto2.html" class="botao">
-                🔍 Veja o produto aqui
-            </a>
-
-        </div>
-
-
-
-        <!-- PRODUTO 3 -->
-
-        <div class="produto">
-
-            <div class="foto-produto">
-                FOTO DO PRODUTO
+            <!-- PRODUTO 3 -->
+            <div class="card-produto">
+                <div>
+                    <div class="foto-box">
+                        <img src="produto3.jpg" alt="Produto 3" onerror="this.parentNode.innerHTML='FOTO DO PRODUTO 3'">
+                    </div>
+                    <h3>Produto 3</h3>
+                    <div class="preco-card">R$ 89,90</div>
+                </div>
+                <a href="produto3.html" class="botao-detalhes">Ver mais detalhes</a>
             </div>
 
-            <h2>Produto 3</h2>
-
-            <p>
-                Descrição do produto.
-                Aqui vamos colocar as informações principais.
-            </p>
-
-            <a href="produto3.html" class="botao">
-                🔍 Veja o produto aqui
-            </a>
-
-        </div>
-
-
-
-        <!-- PRODUTO 4 -->
-
-        <div class="produto">
-
-            <div class="foto-produto">
-                FOTO DO PRODUTO
+            <!-- PRODUTO 4 -->
+            <div class="card-produto">
+                <div>
+                    <div class="foto-box">
+                        <img src="produto4.jpg" alt="Produto 4" onerror="this.parentNode.innerHTML='FOTO DO PRODUTO 4'">
+                    </div>
+                    <h3>Produto 4</h3>
+                    <div class="preco-card">R$ 79,90</div>
+                </div>
+                <a href="produto4.html" class="botao-detalhes">Ver mais detalhes</a>
             </div>
 
-            <h2>Produto 4</h2>
-
-            <p>
-                Descrição do produto.
-                Aqui vamos colocar as informações principais.
-            </p>
-
-            <a href="produto4.html" class="botao">
-                🔍 Veja o produto aqui
-            </a>
-
         </div>
-
-
-
-        <!-- PRODUTO 5 -->
-
-        <div class="produto">
-
-            <div class="foto-produto">
-                FOTO DO PRODUTO
-            </div>
-
-            <h2>Produto 5</h2>
-
-            <p>
-                Descrição do produto.
-                Aqui vamos colocar as informações principais.
-            </p>
-
-            <a href="produto5.html" class="botao">
-                🔍 Veja o produto aqui
-            </a>
-
-        </div>
-
-
-
-        <!-- PRODUTO 6 -->
-
-        <div class="produto">
-
-            <div class="foto-produto">
-                FOTO DO PRODUTO
-            </div>
-
-            <h2>Produto 6</h2>
-
-            <p>
-                Descrição do produto.
-                Aqui vamos colocar as informações principais.
-            </p>
-
-            <a href="produto6.html" class="botao">
-                🔍 Veja o produto aqui
-            </a>
-
-        </div>
-
-
     </main>
 
-
-
-    <!-- =========================
-         RODAPÉ
-    ========================= -->
-
-    <footer>
-
-        <p>
-            © 2026
-            <strong>loja do joatan</strong>
-            — Todos os direitos reservados.
-        </p>
-
-    </footer>
-
-
 </body>
-
 </html>
