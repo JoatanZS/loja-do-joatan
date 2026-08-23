@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Cadastro - LOJA DO JOATAN</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', Arial, sans-serif; background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%); color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
+
+        header { background: linear-gradient(135deg, #001a33, #000a1a); border-bottom: 1px solid rgba(0, 102, 255, 0.3); padding: 20px; text-align: center; }
+        header h1 { font-family: 'Goudy Bookletter 1911', serif; font-size: 32px; font-weight: normal; }
+        header h1 a { color: white; text-decoration: none; text-shadow: 0 0 10px rgba(0, 102, 255, 0.8); }
+
+        .auth-container { max-width: 420px; width: 90%; margin: 40px auto; background: linear-gradient(145deg, #0b1326, #040814); border: 1px solid rgba(0, 102, 255, 0.35); padding: 35px 30px; border-radius: 20px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 102, 255, 0.12); }
+
+        .auth-tabs { display: flex; border-bottom: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 25px; }
+        .tab-btn { flex: 1; padding: 12px; background: none; border: none; color: #8a9bbd; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .tab-btn.ativo { color: #ffffff; border-bottom: 2px solid #0055ff; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 13px; color: #a0b2d6; margin-bottom: 8px; font-weight: 500; }
+        .form-group input { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid rgba(0, 102, 255, 0.3); background: rgba(255, 255, 255, 0.05); color: white; font-size: 14px; outline: none; transition: 0.3s; }
+        .form-group input:focus { border-color: #0055ff; background: rgba(255, 255, 255, 0.08); box-shadow: 0 0 10px rgba(0, 102, 255, 0.3); }
+
+        .btn-auth { width: 100%; padding: 14px; background: linear-gradient(135deg, #0055ff, #002b80); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3); }
+        .btn-auth:hover { background: linear-gradient(135deg, #3377ff, #003d99); box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5); }
+
+        .mensagem { margin-top: 15px; padding: 10px; border-radius: 8px; font-size: 13px; text-align: center; display: none; }
+        .mensagem.sucesso { background: rgba(0, 200, 81, 0.2); color: #00c851; border: 1px solid rgba(0, 200, 81, 0.4); }
+        .mensagem.erro { background: rgba(255, 53, 71, 0.2); color: #ff3547; border: 1px solid rgba(255, 53, 71, 0.4); }
+
+        .voltar-loja { text-align: center; margin-top: 20px; }
+        .voltar-loja a { color: #8a9bbd; text-decoration: none; font-size: 13px; transition: 0.2s; }
+        .voltar-loja a:hover { color: white; }
+
+        footer { text-align: center; padding: 20px; color: #8a9bbd; font-size: 12px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1><a href="index.html">LOJA DO JOATAN</a></h1>
+    </header>
+
+    <main class="auth-container">
+        
+        <div class="auth-tabs">
+            <button class="tab-btn ativo" id="tabEntrar" onclick="alternarAba('entrar')">Entrar</button>
+            <button class="tab-btn" id="tabCadastrar" onclick="alternarAba('cadastrar')">Criar Conta</button>
+        </div>
+
+        <!-- FORMULÁRIO DE LOGIN -->
+        <form id="formEntrar" onsubmit="fazerLogin(event)">
+            <div class="form-group">
+                <label for="loginEmail">E-mail</label>
+                <input type="email" id="loginEmail" placeholder="seuemail@exemplo.com" required>
+            </div>
+            <div class="form-group">
+                <label for="loginSenha">Senha</label>
+                <input type="password" id="loginSenha" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-auth">Entrar na Loja</button>
+        </form>
+
+        <!-- FORMULÁRIO DE CADASTRO -->
+        <form id="formCadastrar" style="display: none;" onsubmit="fazerCadastro(event)">
+            <div class="form-group">
+                <label for="cadEmail">E-mail</label>
+                <input type="email" id="cadEmail" placeholder="seuemail@exemplo.com" required>
+            </div>
+            <div class="form-group">
+                <label for="cadSenha">Senha (mínimo 6 caracteres)</label>
+                <input type="password" id="cadSenha" placeholder="••••••••" required minlength="6">
+            </div>
+            <button type="submit" class="btn-auth">Cadastrar Conta</button>
+        </form>
+
+        <div id="mensagemBox" class="mensagem"></div>
+
+        <div class="voltar-loja">
+            <a href="index.html">← Voltar para a loja</a>
+        </div>
+
+    </main>
+
+    <footer>
+        &copy; LOJA DO JOATAN - Todos os direitos reservados.
+    </footer>
+
+    <script>
+        // ==========================================
+        // CONFIGURAÇÃO DO SEU FIREBASE
+        // Substitua as chaves abaixo pelas chaves do seu projeto Firebase!
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "SUA_API_KEY_AQUI",
+            authDomain: "SEU_PROJETO.firebaseapp.com",
+            projectId: "SEU_PROJETO",
+            storageBucket: "SEU_PROJETO.appspot.com",
+            messagingSenderId: "SEU_SENDER_ID",
+            appId: "SEU_APP_ID"
+        };
+
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Trocar entre Entrar e Cadastrar
+        function alternarAba(modo) {
+            const formEntrar = document.getElementById('formEntrar');
+            const formCadastrar = document.getElementById('formCadastrar');
+            const tabEntrar = document.getElementById('tabEntrar');
+            const tabCadastrar = document.getElementById('tabCadastrar');
+            const msg = document.getElementById('mensagemBox');
+            
+            msg.style.display = 'none';
+
+            if (modo === 'entrar') {
+                formEntrar.style.display = 'block';
+                formCadastrar.style.display = 'none';
+                tabEntrar.classList.add('ativo');
+                tabCadastrar.classList.remove('ativo');
+            } else {
+                formEntrar.style.display = 'none';
+                formCadastrar.style.display = 'block';
+                tabCadastrar.classList.add('ativo');
+                tabEntrar.classList.remove('ativo');
+            }
+        }
+
+        function exibirMensagem(texto, tipo) {
+            const msg = document.getElementById('mensagemBox');
+            msg.innerText = texto;
+            msg.className = `mensagem ${tipo}`;
+            msg.style.display = 'block';
+        }
+
+        // Função de Login
+        function fazerLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const senha = document.getElementById('loginSenha').value;
+
+            auth.signInWithEmailAndPassword(email, senha)
+                .then((userCredential) => {
+                    exibirMensagem('Login realizado com sucesso! Redirecionando...', 'sucesso');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    exibirMensagem('Erro no login: ' + traduzirErro(error.code), 'erro');
+                });
+        }
+
+        // Função de Cadastro
+        function fazerCadastro(event) {
+            event.preventDefault();
+            const email = document.getElementById('cadEmail').value;
+            const senha = document.getElementById('cadSenha').value;
+
+            auth.createUserWithEmailAndPassword(email, senha)
+                .then((userCredential) => {
+                    exibirMensagem('Conta criada com sucesso! Redirecionando...', 'sucesso');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    exibirMensagem('Erro ao cadastrar: ' + traduzirErro(error.code), 'erro');
+                });
+        }
+
+        // Traduz erros comuns do Firebase para Português
+        function traduzirErro(codigo) {
+            switch (codigo) {
+                case 'auth/email-already-in-use':
+                    return 'Este e-mail já está em uso por outro usuário.';
+                case 'auth/invalid-email':
+                    return 'Endereço de e-mail inválido.';
+                case 'auth/weak-password':
+                    return 'A senha deve ter pelo menos 6 caracteres.';
+                case 'auth/user-not-found':
+                case 'auth/wrong-password':
+                case 'auth/invalid-credential':
+                    return 'E-mail ou senha incorretos.';
+                default:
+                    return 'Ocorreu um erro ao processar. Tente novamente.';
+            }
+        }
+    </script>
+
+</body>
+</html>
