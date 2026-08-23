@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Loja do Joatan</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f6fa;
+            color: #222;
+        }
+
+        /* CABEÇALHO */
+        header {
+            background-color: #111827;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #d1d5db;
+            font-size: 18px;
+        }
+
+        /* PRODUTOS */
+        .produtos {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* CARD */
+        .produto {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+        }
+
+        .produto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        /* FOTO */
+        .foto-produto {
+            width: 100%;
+            height: 220px;
+
+            background-color: #e5e7eb;
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #6b7280;
+            font-size: 18px;
+
+            margin-bottom: 20px;
+        }
+
+        .produto h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .produto p {
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* BOTÃO WHATSAPP */
+        .botao {
+            display: block;
+
+            background-color: #16a34a;
+            color: white;
+
+            text-decoration: none;
+            text-align: center;
+
+            padding: 13px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background-color: #15803d;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 50px;
+        }
+
+        /* TABLET */
+        @media (max-width: 800px) {
+            .produtos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* CELULAR */
+        @media (max-width: 550px) {
+            .produtos {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <h1>Loja do Joatan</h1>
+        <p>Produtos recomendados para você</p>
+    </header>
+
+
+    <!-- PRODUTOS -->
+    <main class="produtos">
+
+        <!-- PRODUTO 1 -->
+        <div class="produto">
+
+            <div class="foto-produto">
+                FOTO DO PRODUTO
+            </div>
+
+            <h2>Produto 1</h2>
+
+            <p>
+                Descrição do produto. Aqui vamos colocar
+                as informações principais.
+            </p>
+
+            <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%201%20está%20disponível."
+               class="botao"
+               target="_blank">
+                💬 Ver disponibilidade
+            </a>
+
+        </div>
+
+
+        <!-- PRODUTO 2 -->
+        <div class="produto">
+
+            <div class="foto-produto">
+                FOTO DO PRODUTO
+            </div>
+
+            <h2>Produto 2</h2>
+
+            <p>
+                Descrição do produto. Aqui vamos colocar
+                as informações principais.
+            </p>
+
+            <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%202%20está%20disponível."
+               class="botao"
+               target="_blank">
+                💬 Ver disponibilidade
+            </a>
+
+        </div>
+
+
+        <!-- PRODUTO 3 -->
+        <div class="produto">
+
+            <div class="foto-produto">
+                FOTO DO PRODUTO
+            </div>
+
+            <h2>Produto 3</h2>
+
+            <p>
+                Descrição do produto. Aqui vamos colocar
+                as informações principais.
+            </p>
+
+            <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%203%20está%20disponível."
+               class="botao"
+               target="_blank">
+                💬 Ver disponibilidade
+            </a>
+
+        </div>
+
+
+        <!-- PRODUTO 4 -->
+        <div class="produto">
+
+            <div class="foto-produto">
+                FOTO DO PRODUTO
+            </div>
+
+            <h2>Produto 4</h2>
+
+            <p>
+                Descrição do produto. Aqui vamos colocar
+                as informações principais.
+            </p>
+
+            <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%204%20está%20disponível."
+               class="botao"
+               target="_blank">
+                💬 Ver disponibilidade
+            </a>
+
+        </div>
+
+
+        <!-- PRODUTO 5 -->
+        <div class="produto">
+
+            <div class="foto-produto">
+                FOTO DO PRODUTO
+            </div>
+
+            <h2>Produto 5</h2>
+
+            <p>
+                Descrição do produto. Aqui vamos colocar
+                as informações principais.
+            </p>
+
+            <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%205%20está%20disponível."
+               class="botao"
+               target="_blank">
+                💬 Ver disponibilidade
+            </a>
+
+        </div>
+
+
+        <!-- PRODUTO 6 -->
+        <div class="produto">
+
+            <div class="foto-produto">
+                FOTO DO PRODUTO
+            </div>
+
+            <h2>Produto 6</h2>
+
+            <p>
+                Descrição do produto. Aqui vamos colocar
+                as informações principais.
+            </p>
+
+            <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20saber%20se%20o%20Produto%206%20está%20disponível."
+               class="botao"
+               target="_blank">
+                💬 Ver disponibilidade
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>© 2026 Loja do Joatan — Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
