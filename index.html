@@ -305,15 +305,67 @@
             box-shadow: 0 0 12px rgba(0, 102, 255, 0.6);
         }
 
-        /* Footer */
+        /* Rodapé Completo e Profissional */
         footer { 
-            background: #000814; 
-            border-top: 1px solid rgba(255, 255, 255, 0.08); 
-            padding: 25px; 
-            text-align: center; 
-            font-size: 12px; 
-            color: #6688aa; 
+            background: #00050d; 
+            border-top: 1px solid rgba(0, 102, 255, 0.2); 
+            padding: 40px 20px 25px 20px; 
             margin-top: 50px; 
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-info h3 {
+            font-family: 'Goudy Bookletter 1911', serif;
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .footer-info p {
+            font-size: 13px;
+            color: #7799bb;
+        }
+
+        .footer-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .badge-pill {
+            background: rgba(11, 19, 38, 0.8);
+            border: 1px solid rgba(0, 102, 255, 0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #aaccff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-bottom {
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            font-size: 12px;
+            color: #557799;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         /* Botão flutuante do WhatsApp */
@@ -488,8 +540,27 @@
         💬 Dúvidas? Fale Conosco
     </a>
 
+    <!-- Rodapé Profissional com Selos e Informações -->
     <footer>
-        &copy; 2026 LOJA DO JOATAN - Todos os direitos reservados.
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>LOJA DO JOATAN</h3>
+                <p>Qualidade, confiança e praticidade em um só lugar.</p>
+            </div>
+
+            <!-- Selos de Pagamento e Segurança no Rodapé -->
+            <div class="footer-badges">
+                <div class="badge-pill">🔒 Site 100% Seguro</div>
+                <div class="badge-pill">💳 Pagamento Facilitado</div>
+                <div class="badge-pill">⚡ Envio Rápido</div>
+                <div class="badge-pill">🛡️ Proteção de Dados</div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 LOJA DO JOATAN - Todos os direitos reservados.</div>
+                <div>Feito com dedicação para você.</div>
+            </div>
+        </div>
     </footer>
 
     <!-- Script de autenticação Firebase -->
