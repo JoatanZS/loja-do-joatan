@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODUTO 2 - LOJA DO JOATAN</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', Arial, sans-serif; background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%); color: white; min-height: 100vh; }
+        header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #003366, #001a33, #000a1a); border-bottom: 2px solid rgba(0, 102, 255, 0.4); }
+        header h1 { font-family: 'Goudy Bookletter 1911', 'Goudy Old Style', Georgia, serif; font-size: 45px; font-weight: normal; }
+        header h1 a { color: white; text-decoration: none; text-shadow: 0 0 15px rgba(0, 102, 255, 0.8); }
+        .container-detalhes { max-width: 900px; margin: 50px auto; padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: linear-gradient(145deg, #0b1326, #040814); border: 1px solid rgba(0, 102, 255, 0.35); border-radius: 22px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 102, 255, 0.12); }
+        .foto-produto-detalhe { width: 100%; height: 320px; background: linear-gradient(135deg, #001a33, #040a17); border-radius: 17px; display: flex; align-items: center; justify-content: center; color: #b0d0ff; font-size: 18px; border: 1px solid rgba(0, 102, 255, 0.3); box-shadow: inset 0 0 30px rgba(0, 102, 255, 0.15); }
+        .info-produto { display: flex; flex-direction: column; justify-content: center; }
+        .info-produto h2 { font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0, 102, 255, 0.5); }
+        .preco { font-size: 26px; color: #3377ff; font-weight: 700; margin-bottom: 20px; }
+        .descricao { color: #d7d7d7; line-height: 1.6; font-size: 15px; margin-bottom: 30px; }
+        .botao-comprar { display: block; background: linear-gradient(135deg, #0055ff, #002b80); color: white; text-decoration: none; text-align: center; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 16px; box-shadow: 0 5px 15px rgba(0, 102, 255, 0.35); transition: 0.3s; margin-bottom: 15px; }
+        .botao-comprar:hover { transform: scale(1.03); background: linear-gradient(135deg, #3377ff, #003d99); box-shadow: 0 8px 25px rgba(0, 102, 255, 0.55); }
+        .botao-voltar { display: inline-block; color: #8a9bbd; text-decoration: none; font-size: 14px; text-align: center; transition: 0.2s; }
+        .botao-voltar:hover { color: white; }
+        @media (max-width: 768px) { .container-detalhes { grid-template-columns: 1fr; margin: 20px 15px; padding: 20px; } .foto-produto-detalhe { height: 240px; } }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><a href="index.html">LOJA DO JOATAN</a></h1>
+    </header>
+
+    <main class="container-detalhes">
+        <div class="foto-produto-detalhe">FOTO DO PRODUTO 2</div>
+        <div class="info-produto">
+            <h2>PRODUTO 2</h2>
+            <div class="preco">R$ 149,90</div>
+            <p class="descricao">Descrição do Produto 2. Aqui você coloca as especificações e características principais deste item.</p>
+            <a href="https://wa.me/5592993956270?text=Olá!%20Tenho%20interesse%20no%20Produto%202." class="botao-comprar" target="_blank">💬 Comprar pelo WhatsApp</a>
+            <a href="index.html" class="botao-voltar">← Voltar para a loja</a>
+        </div>
+    </main>
+</body>
+</html>
