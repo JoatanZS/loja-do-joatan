@@ -4,46 +4,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRODUTO 2 - LOJA DO JOATAN</title>
+    <title>NOME DO PRODUTO AQUI - LOJA DO JOATAN</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', Arial, sans-serif; background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%); color: white; min-height: 100vh; }
-        header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #003366, #001a33, #000a1a); border-bottom: 2px solid rgba(0, 102, 255, 0.4); }
-        header h1 { font-family: 'Goudy Bookletter 1911', 'Goudy Old Style', Georgia, serif; font-size: 45px; font-weight: normal; }
-        header h1 a { color: white; text-decoration: none; text-shadow: 0 0 15px rgba(0, 102, 255, 0.8); }
-        .container-detalhes { max-width: 900px; margin: 50px auto; padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: linear-gradient(145deg, #0b1326, #040814); border: 1px solid rgba(0, 102, 255, 0.35); border-radius: 22px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 102, 255, 0.12); }
-        .foto-produto-detalhe { width: 100%; height: 320px; background: linear-gradient(135deg, #001a33, #040a17); border-radius: 17px; display: flex; align-items: center; justify-content: center; color: #b0d0ff; font-size: 18px; border: 1px solid rgba(0, 102, 255, 0.3); box-shadow: inset 0 0 30px rgba(0, 102, 255, 0.15); }
-        .info-produto { display: flex; flex-direction: column; justify-content: center; }
-        .info-produto h2 { font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0, 102, 255, 0.5); }
-        .preco { font-size: 26px; color: #3377ff; font-weight: 700; margin-bottom: 20px; }
-        .descricao { color: #d7d7d7; line-height: 1.6; font-size: 15px; margin-bottom: 30px; }
-        .botao-comprar { display: block; background: linear-gradient(135deg, #0055ff, #002b80); color: white; text-decoration: none; text-align: center; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 16px; box-shadow: 0 5px 15px rgba(0, 102, 255, 0.35); transition: 0.3s; margin-bottom: 15px; }
-        .botao-comprar:hover { transform: scale(1.03); background: linear-gradient(135deg, #3377ff, #003d99); box-shadow: 0 8px 25px rgba(0, 102, 255, 0.55); }
-        .botao-voltar { display: inline-block; color: #8a9bbd; text-decoration: none; font-size: 14px; text-align: center; transition: 0.2s; }
-        .botao-voltar:hover { color: white; }
-        @media (max-width: 768px) { .container-detalhes { grid-template-columns: 1fr; margin: 20px 15px; padding: 20px; } .foto-produto-detalhe { height: 240px; } }
+        
+        body { 
+            font-family: 'Poppins', Arial, sans-serif; 
+            background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%); 
+            color: white; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
+
+        header { 
+            background: linear-gradient(135deg, #001a33 0%, #000a1a 100%); 
+            border-bottom: 1px solid rgba(0, 102, 255, 0.3); 
+            padding: 15px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .logo h1 { font-family: 'Goudy Bookletter 1911', serif; font-size: 28px; font-weight: normal; letter-spacing: 2px; }
+        .logo a { color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(0, 102, 255, 0.8); }
+
+        .btn-back { color: #88aacc; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .btn-back:hover { color: #ffffff; }
+
+        main { padding: 40px 20px; max-width: 1250px; margin: 0 auto; width: 100%; flex: 1; }
+
+        .product-container {
+            background: linear-gradient(145deg, #0b1326, #040814);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 45px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            margin-bottom: 35px;
+        }
+
+        @media (max-width: 900px) { .product-container { grid-template-columns: 1fr; } }
+
+        .gallery { display: flex; flex-direction: column; gap: 15px; }
+        .main-img-box {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 102, 255, 0.25);
+            background: #000;
+        }
+        .main-img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .product-info { display: flex; flex-direction: column; justify-content: space-between; }
+        .product-title { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        
+        .product-badge { display: inline-block; background: rgba(0, 102, 255, 0.2); border: 1px solid rgba(0, 102, 255, 0.4); color: #3377ff; font-size: 12px; padding: 4px 12px; border-radius: 12px; margin-bottom: 15px; width: fit-content; }
+
+        .price-box { margin-bottom: 20px; }
+        .price-old { font-size: 14px; color: #6688aa; text-decoration: line-through; }
+        .price-current { font-size: 36px; font-weight: 800; color: #3377ff; }
+
+        .description { font-size: 14px; color: #aabccd; line-height: 1.6; margin-bottom: 20px; }
+
+        .btn-buy-whats { display: block; width: 100%; text-align: center; background: linear-gradient(135deg, #0055ff, #002b80); color: #ffffff; text-decoration: none; padding: 16px; border-radius: 10px; font-size: 16px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4); }
+        .btn-buy-whats:hover { background: linear-gradient(135deg, #3377ff, #003d99); transform: translateY(-2px); }
+
+        .extra-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        @media (max-width: 900px) { .extra-sections { grid-template-columns: 1fr; } }
+
+        .info-card { background: linear-gradient(145deg, #0b1326, #040814); border: 1px solid rgba(0, 102, 255, 0.2); border-radius: 16px; padding: 25px; }
+        .info-card h3 { font-size: 18px; margin-bottom: 15px; border-left: 3px solid #0066ff; padding-left: 10px; }
+
+        .tech-table { width: 100%; border-collapse: collapse; font-size: 13px; color: #aabccd; }
+        .tech-table td { padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        .tech-table td:first-child { color: #88aacc; font-weight: 600; width: 40%; }
+
+        .auth-box { margin-bottom: 20px; padding: 15px; background: rgba(0, 102, 255, 0.08); border-radius: 8px; border: 1px solid rgba(0, 102, 255, 0.2); text-align: center; }
+        .btn-google { background: #4285f4; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s; font-size: 13px; margin-top: 8px; }
+        .btn-google:hover { background: #3367d6; }
+        
+        .review-form { display: none; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .review-form select, .review-form textarea { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 102, 255, 0.3); border-radius: 6px; padding: 10px; color: white; font-family: inherit; font-size: 13px; outline: none; }
+        .review-form textarea { resize: vertical; height: 70px; }
+        .btn-send-review { background: #0066ff; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+
+        .reviews-list { max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .review-item { border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; }
+        .review-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+        .review-author { font-weight: 600; color: #3377ff; }
+        .review-stars { color: #ffcc00; }
+        .review-text { font-size: 13px; color: #aabccd; }
+
+        footer { background: #000814; border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 20px; text-align: center; font-size: 12px; color: #6688aa; margin-top: 40px; }
     </style>
 </head>
 
 <body>
+
     <header>
-        <h1><a href="index.html">LOJA DO JOATAN</a></h1>
+        <div class="logo">
+            <h1><a href="index.html">LOJA DO JOATAN</a></h1>
+        </div>
+        <a href="index.html" class="btn-back">← Voltar para a Loja</a>
     </header>
 
-    <main class="container-detalhes">
-        <div class="foto-produto-detalhe">FOTO DO PRODUTO 2</div>
-        <div class="info-produto">
-            <h2>PRODUTO 2</h2>
-            <div class="preco">R$ 149,90</div>
-            <p class="descricao">Descrição do Produto 2. Aqui você coloca as especificações e características principais deste item.</p>
-            <a href="https://wa.me/5592993956270?text=Olá!%20Tenho%20interesse%20no%20Produto%202." class="botao-comprar" target="_blank">💬 Comprar pelo WhatsApp</a>
-            <a href="index.html" class="botao-voltar">← Voltar para a loja</a>
+    <main>
+        <div class="product-container">
+            <div class="gallery">
+                <div class="main-img-box">
+                    <img id="main-image" src="caminho-da-foto2.jpg" alt="Nome do Produto 2">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div>
+                    <span class="product-badge">🔥 Item Em Destaque</span>
+                    <h2 class="product-title">NOME DO PRODUTO 2 AQUI</h2>
+                    <div class="price-box">
+                        <div class="price-old">De R$ 00,00 por</div>
+                        <div class="price-current">R$ 00,00</div>
+                    </div>
+                    <p class="description">
+                        Descrição detalhada do produto 2 aqui.
+                    </p>
+                </div>
+
+                <a href="https://wa.me/5592993956270?text=Olá!%20Gostaria%20de%20comprar%20o%20Produto%202" target="_blank" class="btn-buy-whats">
+                    💬 Comprar pelo WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="extra-sections">
+            <div class="info-card">
+                <h3>Especificações do Produto</h3>
+                <table class="tech-table">
+                    <tr><td>Marca:</td><td>Marca do produto</td></tr>
+                    <tr><td>Dimensões:</td><td>Tamanho do produto</td></tr>
+                    <tr><td>Material:</td><td>Material do produto</td></tr>
+                    <tr><td>Garantia:</td><td>30 dias</td></tr>
+                </table>
+            </div>
+
+            <div class="info-card">
+                <h3>Avaliações em Tempo Real</h3>
+
+                <div id="auth-box" class="auth-box">
+                    <p style="font-size: 12px;">Conecte sua conta para deixar um comentário:</p>
+                    <button class="btn-google" onclick="loginGoogle()">🔑 Entrar com Google</button>
+                </div>
+
+                <form id="review-form" class="review-form" onsubmit="enviarAvaliacao(event)">
+                    <span id="user-display" style="font-size: 12px; color: #25d366;"></span>
+                    <select id="rating-stars" required>
+                        <option value="5">★ ★ ★ ★ ★ (5/5)</option>
+                        <option value="4">★ ★ ★ ★ ☆ (4/5)</option>
+                        <option value="3">★ ★ ★ ☆ ☆ (3/5)</option>
+                        <option value="2">★ ★ ☆ ☆ ☆ (2/5)</option>
+                        <option value="1">★ ☆ ☆ ☆ ☆ (1/5)</option>
+                    </select>
+                    <textarea id="review-text" placeholder="Escreva sua opinião sobre o produto..." required></textarea>
+                    <button type="submit" class="btn-send-review">Enviar Avaliação</button>
+                </form>
+
+                <div class="reviews-list" id="reviews-container">
+                    <p style="font-size: 12px; color: #88aacc;">Carregando avaliações...</p>
+                </div>
+            </div>
         </div>
     </main>
+
+    <footer>
+        &copy; LOJA DO JOATAN - Todos os direitos reservados.
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBcl5uTVYLbZh6tnXIhp3bJOqX-1nxhDb8",
+            authDomain: "loja-do-joatan.firebaseapp.com",
+            projectId: "loja-do-joatan",
+            storageBucket: "loja-do-joatan.firebasestorage.app",
+            messagingSenderId: "591394874196",
+            appId: "1:591394874196:web:d8fff14992d0d081ab5ec1",
+            measurementId: "G-N6Z0K097PW"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        let currentUser = null;
+
+        window.loginGoogle = () => {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider).catch(err => alert("Erro ao logar: " + err.message));
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            const authBox = document.getElementById("auth-box");
+            const reviewForm = document.getElementById("review-form");
+            const userDisplay = document.getElementById("user-display");
+
+            if (user) {
+                currentUser = user;
+                if (authBox) authBox.style.display = "none";
+                if (reviewForm) reviewForm.style.display = "flex";
+                if (userDisplay) userDisplay.innerText = `Conectado como: ${user.displayName}`;
+            } else {
+                currentUser = null;
+                if (authBox) authBox.style.display = "block";
+                if (reviewForm) reviewForm.style.display = "none";
+            }
+        });
+
+        window.enviarAvaliacao = async (e) => {
+            e.preventDefault();
+            if (!currentUser) return;
+
+            const text = document.getElementById("review-text").value;
+            const stars = parseInt(document.getElementById("rating-stars").value);
+
+            try {
+                await addDoc(collection(db, "avaliacoes_produto2"), {
+                    autor: currentUser.displayName,
+                    texto: text,
+                    estrelas: stars,
+                    data: serverTimestamp()
+                });
+                document.getElementById("review-text").value = "";
+            } catch (error) {
+                alert("Erro ao enviar: " + error.message);
+            }
+        };
+
+        const q = query(collection(db, "avaliacoes_produto2"), orderBy("data", "desc"));
+        onSnapshot(q, (snapshot) => {
+            const container = document.getElementById("reviews-container");
+            if (!container) return;
+            container.innerHTML = "";
+
+            if (snapshot.empty) {
+                container.innerHTML = "<p style='font-size:12px; color:#88aacc;'>Nenhuma avaliação ainda. Seja o primeiro a comentar!</p>";
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const starStr = "★".repeat(data.estrelas) + "☆".repeat(5 - data.estrelas);
+                container.innerHTML += `
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-author">${data.autor}</span>
+                            <span class="review-stars">${starStr}</span>
+                        </div>
+                        <p class="review-text">${data.texto}</p>
+                    </div>
+                `;
+            });
+        });
+    </script>
 </body>
+
 </html>
