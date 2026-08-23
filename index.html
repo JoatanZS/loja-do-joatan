@@ -4,11 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOJA DO JOATAN - Início</title>
+    <title>LOJA DO JOATAN</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- SDKs do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
     <style>
         * {
@@ -27,23 +31,20 @@
             justify-content: space-between;
         }
 
-        /* HEADER */
         header {
             background: linear-gradient(135deg, #001a33 0%, #000a1a 100%);
             border-bottom: 1px solid rgba(0, 102, 255, 0.3);
-            padding: 15px 5%;
+            padding: 15px 30px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo h1 {
             font-family: 'Goudy Bookletter 1911', serif;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: normal;
             letter-spacing: 2px;
         }
@@ -54,185 +55,83 @@
             text-shadow: 0 0 10px rgba(0, 102, 255, 0.8);
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav a {
-            color: #b0c4de;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        nav a:hover, nav a.active {
-            color: #ffffff;
-            text-shadow: 0 0 8px rgba(0, 102, 255, 0.9);
-        }
-
-        .header-actions {
+        .user-menu {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 15px;
         }
 
-        .action-icon {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 18px;
-            position: relative;
-            transition: transform 0.2s;
+        .user-email {
+            font-size: 13px;
+            color: #88aacc;
         }
 
-        .action-icon:hover {
-            transform: scale(1.15);
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -6px;
-            right: -10px;
-            background-color: #0066ff;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 50%;
-        }
-
-        /* BANNER SECUNDÁRIO / BARRA DE PESQUISA */
-        .search-bar-container {
-            max-width: 1200px;
-            margin: 25px auto 10px auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .search-input {
-            width: 100%;
-            max-width: 500px;
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: 1px solid rgba(0, 102, 255, 0.4);
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .search-input:focus {
-            border-color: #0066ff;
-            box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        /* SEÇÃO DE PRODUTOS */
-        .main-container {
-            max-width: 1200px;
-            margin: 20px auto 50px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            color: #e6f0ff;
-            text-transform: uppercase;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            background: linear-gradient(145deg, #0b1326, #040814);
-            border: 1px solid rgba(0, 102, 255, 0.25);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 102, 255, 0.8);
-            box-shadow: 0 12px 30px rgba(0, 102, 255, 0.25);
-        }
-
-        .product-image-container {
-            width: 100%;
-            height: 220px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .product-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #ffffff;
-        }
-
-        .product-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #3388ff;
-            margin-bottom: 15px;
-        }
-
-        .btn-view {
-            width: 100%;
-            padding: 10px 15px;
+        .btn-auth {
+            padding: 8px 16px;
             background: linear-gradient(135deg, #0055ff, #002b80);
             color: #ffffff;
-            text-decoration: none;
-            border-radius: 8px;
+            border: none;
+            border-radius: 6px;
             font-size: 13px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 85, 255, 0.3);
-            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
         }
 
-        .btn-view:hover {
+        .btn-auth:hover {
             background: linear-gradient(135deg, #3377ff, #003d99);
-            box-shadow: 0 6px 16px rgba(0, 85, 255, 0.5);
         }
 
-        /* FOOTER */
+        .btn-logout {
+            padding: 8px 16px;
+            background: rgba(255, 50, 50, 0.2);
+            border: 1px solid rgba(255, 50, 50, 0.5);
+            color: #ff6b6b;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: rgba(255, 50, 50, 0.4);
+            color: #ffffff;
+        }
+
+        main {
+            padding: 40px 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .welcome-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #0b1326, #040814);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 16px;
+            padding: 40px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .welcome-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-card p {
+            color: #88aacc;
+            font-size: 14px;
+        }
+
         footer {
             background: #000814;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 25px;
+            padding: 20px;
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             color: #6688aa;
         }
     </style>
@@ -242,97 +141,21 @@
 
     <header>
         <div class="logo">
-            <h1><a href="index.html">JOATAN</a></h1>
+            <h1><a href="index.html">LOJA DO JOATAN</a></h1>
         </div>
 
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Venda</a></li>
-                <li><a href="#">Compre</a></li>
-                <li><a href="#">Sobre nós</a></li>
-            </ul>
-        </nav>
-
-        <div class="header-actions">
-            <!-- Ícone de Login/Conta ajustado para abrir login.html -->
-            <a href="login.html" class="action-icon" title="Minha Conta">👤</a>
-            <a href="#" class="action-icon" title="Favoritos">❤️</a>
-            <a href="#" class="action-icon" title="Carrinho">
-                🛒
-                <span class="cart-badge">0</span>
-            </a>
+        <div class="user-menu" id="user-menu">
+            <!-- Esse conteúdo muda automaticamente via JS dependendo do estado do login -->
+            <span class="user-email" id="user-display">Carregando...</span>
+            <a href="login.html" class="btn-auth" id="btn-login-link" style="display: none;">Entrar / Cadastrar</a>
+            <button class="btn-logout" id="btn-logout" onclick="fazerLogout()" style="display: none;">Sair / Mudar Conta</button>
         </div>
     </header>
 
-    <div class="search-bar-container">
-        <input type="text" class="search-input" placeholder="Pesquisar produto na loja...">
-    </div>
-
-    <main class="main-container">
-        <h2 class="section-title">Nossos Produtos</h2>
-
-        <div class="products-grid">
-
-            <!-- Produto 1 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="s-l960.jpg" alt="Pelúcia Homem Aranha">
-                </div>
-                <h3 class="product-title">Pelúcia Homem Aranha</h3>
-                <p class="product-price">R$ 149,90</p>
-                <a href="produto1.html" class="btn-view">Ver mais detalhes</a>
-            </div>
-
-            <!-- Produto 2 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <span style="color: #446688; font-size: 12px;">FOTO DO PRODUTO 2</span>
-                </div>
-                <h3 class="product-title">Produto 2</h3>
-                <p class="product-price">R$ 99,90</p>
-                <a href="produto2.html" class="btn-view">Ver mais detalhes</a>
-            </div>
-
-            <!-- Produto 3 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <span style="color: #446688; font-size: 12px;">FOTO DO PRODUTO 3</span>
-                </div>
-                <h3 class="product-title">Produto 3</h3>
-                <p class="product-price">R$ 89,90</p>
-                <a href="produto3.html" class="btn-view">Ver mais detalhes</a>
-            </div>
-
-            <!-- Produto 4 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <span style="color: #446688; font-size: 12px;">FOTO DO PRODUTO 4</span>
-                </div>
-                <h3 class="product-title">Produto 4</h3>
-                <p class="product-price">R$ 120,00</p>
-                <a href="produto4.html" class="btn-view">Ver mais detalhes</a>
-            </div>
-
-            <!-- Produto 5 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <span style="color: #446688; font-size: 12px;">FOTO DO PRODUTO 5</span>
-                </div>
-                <h3 class="product-title">Produto 5</h3>
-                <p class="product-price">R$ 199,90</p>
-                <a href="produto5.html" class="btn-view">Ver mais detalhes</a>
-            </div>
-
-            <!-- Produto 6 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <span style="color: #446688; font-size: 12px;">FOTO DO PRODUTO 6</span>
-                </div>
-                <h3 class="product-title">Produto 6</h3>
-                <p class="product-price">R$ 59,90</p>
-                <a href="produto6.html" class="btn-view">Ver mais detalhes</a>
-            </div>
-
+    <main>
+        <div class="welcome-card">
+            <h2>Bem-vindo à LOJA DO JOATAN!</h2>
+            <p>Aproveite nossas ofertas exclusivas.</p>
         </div>
     </main>
 
@@ -340,6 +163,50 @@
         &copy; LOJA DO JOATAN - Todos os direitos reservados.
     </footer>
 
+    <script>
+        // CONFIGURAÇÃO DO FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyBcl5uTVYLbZh6tnXIhp3bJOqX-1nxhDb8",
+            authDomain: "loja-do-joatan.firebaseapp.com",
+            projectId: "loja-do-joatan",
+            storageBucket: "loja-do-joatan.firebasestorage.app",
+            messagingSenderId: "591394874196",
+            appId: "1:591394874196:web:d8fff14992d0d081ab5ec1",
+            measurementId: "G-N6Z0K097PW"
+        };
+
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Monitora se o usuário está logado ou não
+        auth.onAuthStateChanged((user) => {
+            const userDisplay = document.getElementById('user-display');
+            const btnLoginLink = document.getElementById('btn-login-link');
+            const btnLogout = document.getElementById('btn-logout');
+
+            if (user) {
+                // Usuário está logado
+                userDisplay.innerText = "Olá, " + user.email;
+                btnLoginLink.style.display = 'none';
+                btnLogout.style.display = 'inline-block';
+            } else {
+                // Usuário não está logado
+                userDisplay.innerText = "Você não está conectado.";
+                btnLoginLink.style.display = 'inline-block';
+                btnLogout.style.display = 'none';
+            }
+        });
+
+        // Função para realizar o logout
+        function fazerLogout() {
+            auth.signOut().then(() => {
+                window.location.href = 'login.html';
+            }).catch((error) => {
+                alert('Erro ao sair da conta: ' + error.message);
+            });
+        }
+    </script>
 </body>
 
 </html>
