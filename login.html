@@ -135,9 +135,10 @@
 
         .message-box {
             margin-top: 15px;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 13px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
             display: none;
             text-align: center;
         }
@@ -149,9 +150,10 @@
         }
 
         .message-box.success {
-            background: rgba(0, 255, 100, 0.15);
-            border: 1px solid rgba(0, 255, 100, 0.4);
-            color: #51cf66;
+            background: rgba(46, 125, 50, 0.85);
+            border: 1px solid #4caf50;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .back-link {
@@ -231,15 +233,15 @@
     </footer>
 
     <script>
-        // CONFIGURAÇÃO REAL DO FIREBASE
+        // CONFIGURAÇÃO CORRIGIDA DO FIREBASE
         const firebaseConfig = {
-            apiKey: "AIzaSyBcl5uTVYLbZh6tnXIhp3bJ0qX-1nxhDb8",
+            apiKey: "AIzaSyBcl5uTVYLbZh6tnXIhp3bJOqX-1nxhDb8",
             authDomain: "loja-do-joatan.firebaseapp.com",
             projectId: "loja-do-joatan",
             storageBucket: "loja-do-joatan.firebasestorage.app",
             messagingSenderId: "591394874196",
             appId: "1:591394874196:web:d8fff14992d0d081ab5ec1",
-            measurementId: "G-N6Z8K897PW"
+            measurementId: "G-N6Z0K097PW"
         };
 
         // Inicializa o Firebase
@@ -289,7 +291,7 @@
 
                 try {
                     await auth.signInWithEmailAndPassword(email, password);
-                    showMessage('Login realizado com sucesso! Redirecionando...');
+                    showMessage('Login bem-sucedido!\nRedirecionando...');
                     setTimeout(() => { window.location.href = 'index.html'; }, 1500);
                 } catch (error) {
                     showMessage('Erro ao entrar: Verifique o e-mail e a senha.', true);
@@ -300,7 +302,7 @@
 
                 try {
                     await auth.createUserWithEmailAndPassword(email, password);
-                    showMessage('Conta criada com sucesso! Redirecionando...');
+                    showMessage('Login bem-sucedido!\nRedirecionando...');
                     setTimeout(() => { window.location.href = 'index.html'; }, 1500);
                 } catch (error) {
                     if(error.code === 'auth/email-already-in-use'){
