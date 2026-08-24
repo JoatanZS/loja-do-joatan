@@ -4,341 +4,570 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso à Conta - LOJA DO JOATAN</title>
+    <title>LOJA DO JOATAN</title>
 
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- SDKs do Firebase Compat -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
         }
-
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-            background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        
+        body { 
+            font-family: 'Poppins', Arial, sans-serif; 
+            background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%); 
+            color: white; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
             overflow-x: hidden;
         }
 
-        /* Animação suave para os elementos da página */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+        /* Animação suave de entrada */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .animated-box {
-            animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        .animated {
+            animation: fadeIn 0.6s ease-out forwards;
         }
 
-        header {
-            background: linear-gradient(135deg, rgba(0, 26, 51, 0.9) 0%, rgba(0, 10, 26, 0.9) 100%);
+        /* Header Dinâmico */
+        header { 
+            background: linear-gradient(135deg, rgba(0, 26, 51, 0.95) 0%, rgba(0, 10, 26, 0.95) 100%); 
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 102, 255, 0.25);
-            padding: 20px 40px;
-            text-align: center;
+            border-bottom: 1px solid rgba(0, 102, 255, 0.25); 
+            padding: 18px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .logo h1 {
-            font-family: 'Goudy Bookletter 1911', serif;
-            font-size: 32px;
-            font-weight: normal;
-            letter-spacing: 2px;
+        .logo h1 { 
+            font-family: 'Goudy Bookletter 1911', serif; 
+            font-size: 32px; 
+            font-weight: normal; 
+            letter-spacing: 2px; 
         }
-
-        .logo a {
-            color: #ffffff;
-            text-decoration: none;
-            text-shadow: 0 0 12px rgba(0, 102, 255, 0.8);
+        
+        .logo a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            text-shadow: 0 0 12px rgba(0, 102, 255, 0.8); 
             transition: 0.3s;
         }
         .logo a:hover { color: #3377ff; }
 
-        /* Container Principal do Formulário */
-        .auth-container {
-            max-width: 440px;
-            width: 90%;
-            margin: 40px auto;
-            background: linear-gradient(145deg, rgba(11, 19, 38, 0.9), rgba(4, 8, 20, 0.95));
-            border: 1px solid rgba(0, 102, 255, 0.35);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 102, 255, 0.15);
-            backdrop-filter: blur(10px);
-        }
-
-        .auth-header-text {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .auth-header-text h2 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #ffffff;
-        }
-
-        .auth-header-text p {
+        .user-auth-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             font-size: 13px;
             color: #88aacc;
         }
 
-        /* Botão do Google Moderno */
-        .btn-google {
-            width: 100%;
-            padding: 13px;
-            background: #ffffff;
-            color: #333333;
-            border: none;
-            border-radius: 10px;
+        .btn-auth { 
+            background: linear-gradient(135deg, #0055ff, #0033cc); 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-auth:hover { 
+            background: linear-gradient(135deg, #3377ff, #0044ee); 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 102, 255, 0.5);
+        }
+
+        /* Main Content */
+        main { 
+            padding: 40px 20px; 
+            max-width: 1250px; 
+            margin: 0 auto; 
+            width: 100%; 
+            flex: 1; 
+        }
+
+        /* Banner de Boas-Vindas Dinâmico */
+        .welcome-banner {
+            background: linear-gradient(145deg, rgba(11, 19, 38, 0.85), rgba(4, 8, 20, 0.95));
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 16px;
+            padding: 35px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-banner h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .welcome-banner p {
+            font-size: 14px;
+            color: #88aacc;
+            margin-bottom: 15px;
+        }
+
+        .offer-tag {
+            display: inline-block;
+            background: rgba(0, 102, 255, 0.15);
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            color: #3377ff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        /* Seção de Selos de Confiança (Vantagens) */
+        .features-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 45px;
+        }
+
+        .feature-item {
+            background: rgba(11, 19, 38, 0.5);
+            border: 1px solid rgba(0, 102, 255, 0.15);
+            padding: 18px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 26px;
+        }
+
+        .feature-text h4 {
             font-size: 14px;
             font-weight: 600;
-            cursor: pointer;
+            color: #fff;
+        }
+
+        .feature-text p {
+            font-size: 12px;
+            color: #88aacc;
+        }
+
+        /* Seção Título */
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 22px;
+            gap: 10px;
         }
 
-        .btn-google:hover {
-            background: #f8f9fa;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 22px;
+            background: #0066ff;
+            border-radius: 2px;
+            box-shadow: 0 0 10px #0066ff;
         }
 
-        .btn-google img {
-            width: 20px;
-            height: 20px;
+        /* Grade de Produtos Dinâmica */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
         }
 
-        .divider {
+        /* Card de Produto com Efeito de Elevação */
+        .product-card {
+            background: linear-gradient(145deg, #0b1326, #040814);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
             display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 102, 255, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 102, 255, 0.25);
+        }
+
+        .product-img-box {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-box img {
+            transform: scale(1.06);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 85, 255, 0.85);
+            backdrop-filter: blur(5px);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #3377ff;
+            text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-details {
+            background: rgba(0, 102, 255, 0.15);
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .product-card:hover .btn-details {
+            background: #0066ff;
+            border-color: #0066ff;
+            box-shadow: 0 0 12px rgba(0, 102, 255, 0.6);
+        }
+
+        /* Rodapé Completo e Profissional */
+        footer { 
+            background: #00050d; 
+            border-top: 1px solid rgba(0, 102, 255, 0.2); 
+            padding: 40px 20px 25px 20px; 
+            margin-top: 50px; 
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
             align-items: center;
             text-align: center;
-            color: #557799;
-            font-size: 12px;
-            margin-bottom: 22px;
-            text-transform: uppercase;
+        }
+
+        .footer-info h3 {
+            font-family: 'Goudy Bookletter 1911', serif;
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 5px;
             letter-spacing: 1px;
         }
 
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid rgba(0, 102, 255, 0.2);
-        }
-
-        .divider::before { margin-right: 12px; }
-        .divider::after { margin-left: 12px; }
-
-        /* Abas Estilizadas */
-        .tabs {
-            display: flex;
-            background: rgba(0, 10, 26, 0.6);
-            border-radius: 10px;
-            padding: 4px;
-            margin-bottom: 22px;
-            border: 1px solid rgba(0, 102, 255, 0.2);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 10px;
-            background: none;
-            border: none;
-            color: #88aacc;
+        .footer-info p {
             font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, #0055ff, #0033cc);
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 6px;
-            color: #aaccff;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 102, 255, 0.3);
-            background: rgba(0, 10, 26, 0.5);
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus {
-            border-color: #3377ff;
-            background: rgba(0, 15, 36, 0.8);
-            box-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 13px;
-            background: linear-gradient(135deg, #0055ff, #0033cc);
-            color: #ffffff;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 8px;
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.35);
-        }
-
-        .btn-submit:hover {
-            background: linear-gradient(135deg, #3377ff, #0044ee);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
-        }
-
-        .message-box {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 500;
-            display: none;
-            text-align: center;
-        }
-
-        .message-box.error {
-            background: rgba(255, 0, 0, 0.15);
-            border: 1px solid rgba(255, 0, 0, 0.4);
-            color: #ff6b6b;
-        }
-
-        .message-box.success {
-            background: rgba(0, 200, 83, 0.2);
-            border: 1px solid rgba(0, 200, 83, 0.5);
-            color: #69f0ae;
-        }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 22px;
             color: #7799bb;
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.3s;
         }
 
-        .back-link:hover {
-            color: #ffffff;
+        .footer-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
         }
 
-        footer {
-            background: #00050d;
-            border-top: 1px solid rgba(0, 102, 255, 0.2);
-            padding: 25px;
-            text-align: center;
+        .badge-pill {
+            background: rgba(11, 19, 38, 0.8);
+            border: 1px solid rgba(0, 102, 255, 0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #aaccff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-bottom {
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
             font-size: 12px;
             color: #557799;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Botão flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: 0.3s;
+            z-index: 999;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
         }
     </style>
 </head>
 
 <body>
 
-    <header>
+    <header class="animated">
         <div class="logo">
             <h1><a href="index.html">LOJA DO JOATAN</a></h1>
         </div>
+        <div class="user-auth-area">
+            <span id="user-status-text">Carregando...</span>
+            <a href="login.html" class="btn-auth" id="auth-action-btn">Entrar / Cadastrar</a>
+        </div>
     </header>
 
-    <main>
-        <div class="auth-container animated-box">
-            <div class="auth-header-text">
-                <h2>Identificação da Conta</h2>
-                <p>Acesse sua conta ou cadastre-se para aproveitar a loja</p>
+    <main class="animated">
+        <!-- Banner Principal -->
+        <div class="welcome-banner">
+            <h2>Bem-vindo à LOJA DO JOATAN!</h2>
+            <p>Encontre os melhores produtos com exclusividade e atendimento dedicado.</p>
+            <div class="offer-tag">⚡ Ofertas válidas enquanto durarem os estoques</div>
+        </div>
+
+        <!-- Barra de Vantagens / Confiança -->
+        <div class="features-bar">
+            <div class="feature-item">
+                <div class="feature-icon">🚚</div>
+                <div class="feature-text">
+                    <h4>Entrega Rápida</h4>
+                    <p>Agilidade e cuidado no envio</p>
+                </div>
             </div>
-
-            <!-- Botão do Google -->
-            <button type="button" class="btn-google" onclick="loginWithGoogle()">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
-                Continuar com o Google
-            </button>
-
-            <div class="divider">ou use seu e-mail</div>
-
-            <div class="tabs">
-                <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Entrar</button>
-                <button class="tab-btn" id="tab-register" onclick="switchTab('register')">Criar Conta</button>
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-text">
+                    <h4>Compra Segura</h4>
+                    <p>Ambiente protegido e confiável</p>
+                </div>
             </div>
-
-            <!-- Form de Login -->
-            <form id="login-form" onsubmit="handleAuth(event, 'login')">
-                <div class="form-group">
-                    <label>E-MAIL</label>
-                    <input type="email" id="login-email" placeholder="seuemail@exemplo.com" required>
+            <div class="feature-item">
+                <div class="feature-icon">💬</div>
+                <div class="feature-text">
+                    <h4>Suporte Humanizado</h4>
+                    <p>Atendimento direto via WhatsApp</p>
                 </div>
-                <div class="form-group">
-                    <label>SENHA</label>
-                    <input type="password" id="login-password" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="btn-submit">Entrar na Loja</button>
-            </form>
+            </div>
+        </div>
 
-            <!-- Form de Cadastro -->
-            <form id="register-form" onsubmit="handleAuth(event, 'register')" style="display: none;">
-                <div class="form-group">
-                    <label>SEU E-MAIL</label>
-                    <input type="email" id="register-email" placeholder="seuemail@exemplo.com" required>
-                </div>
-                <div class="form-group">
-                    <label>CRIE UMA SENHA (MÍN. 6 CARACTERES)</label>
-                    <input type="password" id="register-password" placeholder="••••••••" minlength="6" required>
-                </div>
-                <button type="submit" class="btn-submit">Cadastrar Conta</button>
-            </form>
+        <!-- Grade com os 6 Produtos -->
+        <div class="section-title">Produtos em Destaque</div>
 
-            <div id="message-box" class="message-box"></div>
+        <div class="products-grid">
+            <!-- PRODUTO 1 -->
+            <a href="produto1.html" class="product-card">
+                <div class="product-img-box">
+                    <span class="product-badge">🔥 Destaque</span>
+                    <img src="FOTO-PRODUTO-1.jpg" alt="Pelúcia Homem Aranha">
+                </div>
+                <div class="product-content">
+                    <div class="product-name">PELÚCIA HOMEM ARANHA</div>
+                    <div class="product-footer">
+                        <div class="product-price">R$ 149,90</div>
+                        <span class="btn-details">Ver Mais</span>
+                    </div>
+                </div>
+            </a>
 
-            <a href="index.html" class="back-link">&larr; Voltar para a página inicial</a>
+            <!-- PRODUTO 2 -->
+            <a href="produto2.html" class="product-card">
+                <div class="product-img-box">
+                    <span class="product-badge">✨ Novo</span>
+                    <img src="FOTO-PRODUTO-2.jpg" alt="Produto 2">
+                </div>
+                <div class="product-content">
+                    <div class="product-name">PRODUTO 2</div>
+                    <div class="product-footer">
+                        <div class="product-price">R$ 99,90</div>
+                        <span class="btn-details">Ver Mais</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- PRODUTO 3 -->
+            <a href="produto3.html" class="product-card">
+                <div class="product-img-box">
+                    <span class="product-badge">⭐ Especial</span>
+                    <img src="FOTO-PRODUTO-3.jpg" alt="Produto 3">
+                </div>
+                <div class="product-content">
+                    <div class="product-name">PRODUTO 3</div>
+                    <div class="product-footer">
+                        <div class="product-price">R$ 120,00</div>
+                        <span class="btn-details">Ver Mais</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- PRODUTO 4 -->
+            <a href="produto4.html" class="product-card">
+                <div class="product-img-box">
+                    <span class="product-badge">🔥 Oferta</span>
+                    <img src="FOTO-PRODUTO-4.jpg" alt="Produto 4">
+                </div>
+                <div class="product-content">
+                    <div class="product-name">PRODUTO 4</div>
+                    <div class="product-footer">
+                        <div class="product-price">R$ 89,90</div>
+                        <span class="btn-details">Ver Mais</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- PRODUTO 5 -->
+            <a href="produto5.html" class="product-card">
+                <div class="product-img-box">
+                    <span class="product-badge">✨ Novo</span>
+                    <img src="FOTO-PRODUTO-5.jpg" alt="Produto 5">
+                </div>
+                <div class="product-content">
+                    <div class="product-name">PRODUTO 5</div>
+                    <div class="product-footer">
+                        <div class="product-price">R$ 110,00</div>
+                        <span class="btn-details">Ver Mais</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- PRODUTO 6 -->
+            <a href="produto6.html" class="product-card">
+                <div class="product-img-box">
+                    <span class="product-badge">⭐ Top</span>
+                    <img src="FOTO-PRODUTO-6.jpg" alt="Produto 6">
+                </div>
+                <div class="product-content">
+                    <div class="product-name">PRODUTO 6</div>
+                    <div class="product-footer">
+                        <div class="product-price">R$ 139,90</div>
+                        <span class="btn-details">Ver Mais</span>
+                    </div>
+                </div>
+            </a>
         </div>
     </main>
 
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5592993956270?text=Olá!%20Vim%20pelo%20site%20e%20tenho%20uma%20dúvida." target="_blank" class="whatsapp-float">
+        💬 Dúvidas? Fale Conosco
+    </a>
+
+    <!-- Rodapé Profissional com Selos e Informações -->
     <footer>
-        &copy; 2026 LOJA DO JOATAN - Todos os direitos reservados.
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>LOJA DO JOATAN</h3>
+                <p>Qualidade, confiança e praticidade em um só lugar.</p>
+            </div>
+
+            <!-- Selos de Pagamento e Segurança no Rodapé -->
+            <div class="footer-badges">
+                <div class="badge-pill">🔒 Site 100% Seguro</div>
+                <div class="badge-pill">💳 Pagamento Facilitado</div>
+                <div class="badge-pill">⚡ Envio Rápido</div>
+                <div class="badge-pill">🛡️ Proteção de Dados</div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 LOJA DO JOATAN - Todos os direitos reservados.</div>
+                <div>Feito com dedicação para você.</div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Script de verificação de sessão Firebase Compat -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBcl5uTVYLbZh6tnXIhp3bJOqX-1nxhDb8",
@@ -353,79 +582,30 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        function switchTab(mode) {
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
-            const tabLogin = document.getElementById('tab-login');
-            const tabRegister = document.getElementById('tab-register');
-            const msgBox = document.getElementById('message-box');
+        const authBtn = document.getElementById("auth-action-btn");
+        const userStatus = document.getElementById("user-status-text");
 
-            msgBox.style.display = 'none';
-
-            if (mode === 'login') {
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
-                tabLogin.classList.add('active');
-                tabRegister.classList.remove('active');
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                const userName = user.email.split('@')[0];
+                userStatus.innerText = `Olá, ${userName}`;
+                authBtn.innerText = "Sair";
+                authBtn.href = "#";
+                
+                authBtn.onclick = (e) => {
+                    e.preventDefault();
+                    auth.signOut().then(() => {
+                        alert("Você saiu da conta.");
+                        window.location.reload();
+                    });
+                };
             } else {
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
-                tabLogin.classList.remove('active');
-                tabRegister.classList.add('active');
+                userStatus.innerText = "Você não está conectado.";
+                authBtn.innerText = "Entrar / Cadastrar";
+                authBtn.href = "login.html";
+                authBtn.onclick = null;
             }
-        }
-
-        function showMessage(text, isError = false) {
-            const msgBox = document.getElementById('message-box');
-            msgBox.innerText = text;
-            msgBox.style.display = 'block';
-            msgBox.className = 'message-box ' + (isError ? 'error' : 'success');
-        }
-
-        async function loginWithGoogle() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            try {
-                await auth.signInWithPopup(provider);
-                showMessage('Login com Google bem-sucedido! Redirecionando...');
-                setTimeout(() => { window.location.href = 'index.html'; }, 1500);
-            } catch (error) {
-                showMessage('Erro ao entrar com Google: ' + error.message, true);
-            }
-        }
-
-        async function handleAuth(event, type) {
-            event.preventDefault();
-            const msgBox = document.getElementById('message-box');
-            msgBox.style.display = 'none';
-
-            if (type === 'login') {
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
-
-                try {
-                    await auth.signInWithEmailAndPassword(email, password);
-                    showMessage('Login bem-sucedido! Redirecionando...');
-                    setTimeout(() => { window.location.href = 'index.html'; }, 1500);
-                } catch (error) {
-                    showMessage('Erro ao entrar: E-mail ou senha incorretos.', true);
-                }
-            } else {
-                const email = document.getElementById('register-email').value;
-                const password = document.getElementById('register-password').value;
-
-                try {
-                    await auth.createUserWithEmailAndPassword(email, password);
-                    showMessage('Conta criada com sucesso! Redirecionando...');
-                    setTimeout(() => { window.location.href = 'index.html'; }, 1500);
-                } catch (error) {
-                    if(error.code === 'auth/email-already-in-use'){
-                        showMessage('Este e-mail já está cadastrado.', true);
-                    } else {
-                        showMessage('Erro ao cadastrar: ' + error.message, true);
-                    }
-                }
-            }
-        }
+        });
     </script>
 </body>
 
