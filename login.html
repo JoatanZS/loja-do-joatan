@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- SDKs do Firebase -->
+    <!-- SDKs do Firebase Compat -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
@@ -229,11 +229,10 @@
     </main>
 
     <footer>
-        &copy; LOJA DO JOATAN - Todos os direitos reservados.
+        &copy; 2026 LOJA DO JOATAN - Todos os direitos reservados.
     </footer>
 
     <script>
-        // CONFIGURAÇÃO CORRIGIDA DO FIREBASE
         const firebaseConfig = {
             apiKey: "AIzaSyBcl5uTVYLbZh6tnXIhp3bJOqX-1nxhDb8",
             authDomain: "loja-do-joatan.firebaseapp.com",
@@ -244,14 +243,10 @@
             measurementId: "G-N6Z0K097PW"
         };
 
-        // Inicializa o Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        let currentMode = 'login';
-
         function switchTab(mode) {
-            currentMode = mode;
             const loginForm = document.getElementById('login-form');
             const registerForm = document.getElementById('register-form');
             const tabLogin = document.getElementById('tab-login');
@@ -302,7 +297,7 @@
 
                 try {
                     await auth.createUserWithEmailAndPassword(email, password);
-                    showMessage('Login bem-sucedido!\nRedirecionando...');
+                    showMessage('Cadastro realizado com sucesso!\nRedirecionando...');
                     setTimeout(() => { window.location.href = 'index.html'; }, 1500);
                 } catch (error) {
                     if(error.code === 'auth/email-already-in-use'){
