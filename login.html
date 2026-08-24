@@ -30,9 +30,22 @@
             flex-direction: column;
             justify-content: space-between;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Animação suave para os elementos da página */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -40,6 +53,8 @@
 
         .animated-box {
             animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            position: relative;
+            z-index: 1;
         }
 
         header {
@@ -48,6 +63,8 @@
             border-bottom: 1px solid rgba(0, 102, 255, 0.25);
             padding: 20px 40px;
             text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
         .logo h1 {
@@ -65,17 +82,23 @@
         }
         .logo a:hover { color: #3377ff; }
 
-        /* Container Principal do Formulário */
+        /* Container Principal com efeito dinâmico */
         .auth-container {
             max-width: 440px;
             width: 90%;
             margin: 40px auto;
-            background: linear-gradient(145deg, rgba(11, 19, 38, 0.9), rgba(4, 8, 20, 0.95));
-            border: 1px solid rgba(0, 102, 255, 0.35);
-            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(11, 19, 38, 0.95), rgba(4, 8, 20, 0.98));
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            border-radius: 24px;
             padding: 35px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 102, 255, 0.15);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 102, 255, 0.15);
+            backdrop-filter: blur(15px);
+            transition: box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .auth-container:hover {
+            border-color: rgba(0, 102, 255, 0.7);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 102, 255, 0.3);
         }
 
         .auth-header-text {
@@ -84,7 +107,7 @@
         }
 
         .auth-header-text h2 {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: 6px;
             color: #ffffff;
@@ -95,14 +118,14 @@
             color: #88aacc;
         }
 
-        /* Botão do Google Moderno */
+        /* Botão do Google */
         .btn-google {
             width: 100%;
             padding: 13px;
             background: #ffffff;
             color: #333333;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
@@ -112,13 +135,13 @@
             gap: 12px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .btn-google:hover {
             background: #f8f9fa;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
         }
 
         .btn-google img {
@@ -131,16 +154,17 @@
             align-items: center;
             text-align: center;
             color: #557799;
-            font-size: 12px;
-            margin-bottom: 22px;
+            font-size: 11px;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 600;
         }
 
         .divider::before, .divider::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid rgba(0, 102, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.25);
         }
 
         .divider::before { margin-right: 12px; }
@@ -149,11 +173,11 @@
         /* Abas Estilizadas */
         .tabs {
             display: flex;
-            background: rgba(0, 10, 26, 0.6);
-            border-radius: 10px;
-            padding: 4px;
+            background: rgba(0, 10, 26, 0.7);
+            border-radius: 12px;
+            padding: 5px;
             margin-bottom: 22px;
-            border: 1px solid rgba(0, 102, 255, 0.2);
+            border: 1px solid rgba(0, 102, 255, 0.25);
         }
 
         .tab-btn {
@@ -172,7 +196,7 @@
         .tab-btn.active {
             background: linear-gradient(135deg, #0055ff, #0033cc);
             color: #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
         }
 
         .form-group {
@@ -182,19 +206,32 @@
 
         .form-group label {
             display: block;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 11px;
+            font-weight: 600;
             margin-bottom: 6px;
             color: #aaccff;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper span {
+            position: absolute;
+            left: 15px;
+            font-size: 16px;
+            pointer-events: none;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
-            border-radius: 10px;
+            padding: 13px 15px 13px 45px;
+            border-radius: 12px;
             border: 1px solid rgba(0, 102, 255, 0.3);
-            background: rgba(0, 10, 26, 0.5);
+            background: rgba(0, 10, 26, 0.6);
             color: #ffffff;
             font-size: 14px;
             outline: none;
@@ -203,35 +240,65 @@
 
         .form-group input:focus {
             border-color: #3377ff;
-            background: rgba(0, 15, 36, 0.8);
-            box-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+            background: rgba(0, 15, 36, 0.9);
+            box-shadow: 0 0 12px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Link de Esqueceu a Senha */
+        .forgot-password {
+            text-align: right;
+            margin-top: -8px;
+            margin-bottom: 15px;
+        }
+
+        .forgot-password a {
+            font-size: 12px;
+            color: #7799bb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .forgot-password a:hover {
+            color: #3377ff;
+            text-decoration: underline;
         }
 
         .btn-submit {
             width: 100%;
-            padding: 13px;
+            padding: 14px;
             background: linear-gradient(135deg, #0055ff, #0033cc);
             color: #ffffff;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 8px;
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.35);
+            margin-top: 5px;
+            box-shadow: 0 5px 18px rgba(0, 102, 255, 0.4);
         }
 
         .btn-submit:hover {
             background: linear-gradient(135deg, #3377ff, #0044ee);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
+            box-shadow: 0 8px 22px rgba(0, 102, 255, 0.6);
+        }
+
+        .auth-security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 11px;
+            color: #7799bb;
         }
 
         .message-box {
             margin-top: 15px;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13px;
             font-weight: 500;
             display: none;
@@ -253,7 +320,7 @@
         .back-link {
             display: block;
             text-align: center;
-            margin-top: 22px;
+            margin-top: 20px;
             color: #7799bb;
             text-decoration: none;
             font-size: 13px;
@@ -271,6 +338,8 @@
             text-align: center;
             font-size: 12px;
             color: #557799;
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
@@ -286,8 +355,8 @@
     <main>
         <div class="auth-container animated-box">
             <div class="auth-header-text">
-                <h2>Identificação da Conta</h2>
-                <p>Acesse sua conta ou cadastre-se para aproveitar a loja</p>
+                <h2>Área do Cliente</h2>
+                <p>Faça login ou crie sua conta com segurança</p>
             </div>
 
             <!-- Botão do Google -->
@@ -296,7 +365,7 @@
                 Continuar com o Google
             </button>
 
-            <div class="divider">ou use seu e-mail</div>
+            <div class="divider">ou acesse com e-mail</div>
 
             <div class="tabs">
                 <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Entrar</button>
@@ -307,12 +376,24 @@
             <form id="login-form" onsubmit="handleAuth(event, 'login')">
                 <div class="form-group">
                     <label>E-MAIL</label>
-                    <input type="email" id="login-email" placeholder="seuemail@exemplo.com" required>
+                    <div class="input-wrapper">
+                        <span>✉️</span>
+                        <input type="email" id="login-email" placeholder="seuemail@exemplo.com" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>SENHA</label>
-                    <input type="password" id="login-password" placeholder="••••••••" required>
+                    <div class="input-wrapper">
+                        <span>🔒</span>
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                    </div>
                 </div>
+                
+                <!-- Opção de Esqueceu a Senha -->
+                <div class="forgot-password">
+                    <a href="#" onclick="resetPassword(event)">Esqueceu a senha?</a>
+                </div>
+
                 <button type="submit" class="btn-submit">Entrar na Loja</button>
             </form>
 
@@ -320,16 +401,29 @@
             <form id="register-form" onsubmit="handleAuth(event, 'register')" style="display: none;">
                 <div class="form-group">
                     <label>SEU E-MAIL</label>
-                    <input type="email" id="register-email" placeholder="seuemail@exemplo.com" required>
+                    <div class="input-wrapper">
+                        <span>✉️</span>
+                        <input type="email" id="register-email" placeholder="seuemail@exemplo.com" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>CRIE UMA SENHA (MÍN. 6 CARACTERES)</label>
-                    <input type="password" id="register-password" placeholder="••••••••" minlength="6" required>
+                    <div class="input-wrapper">
+                        <span>🔑</span>
+                        <input type="password" id="register-password" placeholder="••••••••" minlength="6" required>
+                    </div>
                 </div>
                 <button type="submit" class="btn-submit">Cadastrar Conta</button>
             </form>
 
             <div id="message-box" class="message-box"></div>
+
+            <!-- Selos de Confiança Internos -->
+            <div class="auth-security-badges">
+                <span>🛡️ Dados Protegidos</span>
+                <span>⚡ Acesso Rápido</span>
+                <span>🔒 SSL Seguro</span>
+            </div>
 
             <a href="index.html" class="back-link">&larr; Voltar para a página inicial</a>
         </div>
@@ -380,6 +474,24 @@
             msgBox.innerText = text;
             msgBox.style.display = 'block';
             msgBox.className = 'message-box ' + (isError ? 'error' : 'success');
+        }
+
+        // Função de Recuperação de Senha
+        async function resetPassword(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+
+            if (!email) {
+                showMessage('Digite seu e-mail no campo acima para recuperar a senha.', true);
+                return;
+            }
+
+            try {
+                await auth.sendPasswordResetEmail(email);
+                showMessage('E-mail de recuperação enviado! Verifique sua caixa de entrada.');
+            } catch (error) {
+                showMessage('Erro ao enviar recuperação: Verifique o e-mail digitado.', true);
+            }
         }
 
         async function loginWithGoogle() {
