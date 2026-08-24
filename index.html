@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOJA DO JOATAN</title>
+    <title>LOJA DO JOATAN | Inovação e Qualidade</title>
 
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- SDKs do Firebase Compat -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -24,8 +24,8 @@
         
         body { 
             font-family: 'Poppins', Arial, sans-serif; 
-            background: radial-gradient(circle at top, #002244 0%, #001026 30%, #000814 65%, #030712 100%); 
-            color: white; 
+            background: radial-gradient(circle at top, #002244 0%, #001026 35%, #000712 70%, #02040a 100%); 
+            color: #ffffff; 
             min-height: 100vh; 
             display: flex; 
             flex-direction: column; 
@@ -33,22 +33,20 @@
             overflow-x: hidden;
         }
 
-        /* Animação suave de entrada */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .animated {
-            animation: fadeIn 0.6s ease-out forwards;
+            animation: fadeIn 0.5s ease-out forwards;
         }
 
-        /* Header Dinâmico */
         header { 
-            background: linear-gradient(135deg, rgba(0, 26, 51, 0.95) 0%, rgba(0, 10, 26, 0.95) 100%); 
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 102, 255, 0.25); 
-            padding: 18px 40px; 
+            background: rgba(0, 15, 35, 0.85); 
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.2); 
+            padding: 16px 5%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -59,7 +57,7 @@
 
         .logo h1 { 
             font-family: 'Goudy Bookletter 1911', serif; 
-            font-size: 32px; 
+            font-size: 28px; 
             font-weight: normal; 
             letter-spacing: 2px; 
         }
@@ -67,7 +65,7 @@
         .logo a { 
             color: #ffffff; 
             text-decoration: none; 
-            text-shadow: 0 0 12px rgba(0, 102, 255, 0.8); 
+            text-shadow: 0 0 10px rgba(0, 102, 255, 0.7); 
             transition: 0.3s;
         }
         .logo a:hover { color: #3377ff; }
@@ -77,137 +75,169 @@
             align-items: center;
             gap: 15px;
             font-size: 13px;
-            color: #88aacc;
+            color: #99bbff;
         }
 
         .btn-auth { 
             background: linear-gradient(135deg, #0055ff, #0033cc); 
             color: white; 
             border: none; 
-            padding: 10px 20px; 
+            padding: 9px 18px; 
             border-radius: 8px; 
             font-weight: 600; 
             cursor: pointer; 
             transition: all 0.3s ease; 
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
             text-decoration: none;
             display: inline-block;
         }
         
         .btn-auth:hover { 
-            background: linear-gradient(135deg, #3377ff, #0044ee); 
+            background: linear-gradient(135deg, #2266ff, #0044ee); 
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(0, 102, 255, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
         }
 
-        /* Main Content */
         main { 
-            padding: 40px 20px; 
-            max-width: 1250px; 
+            padding: 40px 5%; 
+            max-width: 1300px; 
             margin: 0 auto; 
             width: 100%; 
             flex: 1; 
         }
 
-        /* Banner de Boas-Vindas Dinâmico */
-        .welcome-banner {
-            background: linear-gradient(145deg, rgba(11, 19, 38, 0.85), rgba(4, 8, 20, 0.95));
+        /* Hero Banner Estilizado */
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(10, 25, 50, 0.9), rgba(2, 8, 20, 0.95));
             border: 1px solid rgba(0, 102, 255, 0.3);
-            border-radius: 16px;
-            padding: 35px;
+            border-radius: 20px;
+            padding: 50px 30px;
             text-align: center;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 35px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
             position: relative;
             overflow: hidden;
         }
 
-        .welcome-banner h2 {
-            font-size: 28px;
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-banner h2 {
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: #ffffff;
+            letter-spacing: 0.5px;
         }
 
-        .welcome-banner p {
-            font-size: 14px;
-            color: #88aacc;
-            margin-bottom: 15px;
+        .hero-banner p {
+            font-size: 15px;
+            color: #99bbff;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .offer-tag {
-            display: inline-block;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background: rgba(0, 102, 255, 0.15);
             border: 1px solid rgba(0, 102, 255, 0.4);
-            color: #3377ff;
-            font-size: 12px;
+            color: #4488ff;
+            font-size: 13px;
             font-weight: 600;
-            padding: 6px 16px;
-            border-radius: 20px;
+            padding: 8px 18px;
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.2);
         }
 
-        /* Seção de Selos de Confiança (Vantagens) */
-        .features-bar {
+        /* Barra de Vantagens */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
             margin-bottom: 45px;
         }
 
-        .feature-item {
-            background: rgba(11, 19, 38, 0.5);
+        .feature-card {
+            background: rgba(8, 16, 32, 0.6);
             border: 1px solid rgba(0, 102, 255, 0.15);
-            padding: 18px 20px;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             gap: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(0, 102, 255, 0.4);
+            transform: translateY(-3px);
         }
 
         .feature-icon {
-            font-size: 26px;
+            font-size: 28px;
+            background: rgba(0, 102, 255, 0.1);
+            padding: 12px;
+            border-radius: 12px;
         }
 
-        .feature-text h4 {
+        .feature-info h4 {
             font-size: 14px;
             font-weight: 600;
             color: #fff;
+            margin-bottom: 2px;
         }
 
-        .feature-text p {
+        .feature-info p {
             font-size: 12px;
             color: #88aacc;
         }
 
-        /* Seção Título */
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
+        /* Título de Seção */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .section-title::before {
             content: '';
             width: 4px;
-            height: 22px;
+            height: 24px;
             background: #0066ff;
             border-radius: 2px;
-            box-shadow: 0 0 10px #0066ff;
+            box-shadow: 0 0 12px #0066ff;
         }
 
-        /* Grade de Produtos Dinâmica */
+        /* Grade de Produtos */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        /* Card de Produto com Efeito de Elevação */
         .product-card {
             background: linear-gradient(145deg, #0b1326, #040814);
             border: 1px solid rgba(0, 102, 255, 0.2);
@@ -217,7 +247,7 @@
             flex-direction: column;
             justify-content: space-between;
             transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             text-decoration: none;
             color: inherit;
             position: relative;
@@ -229,23 +259,26 @@
             box-shadow: 0 15px 35px rgba(0, 102, 255, 0.25);
         }
 
-        .product-img-box {
+        .product-img-container {
             position: relative;
             width: 100%;
             height: 240px;
-            background: #000;
+            background: #020617;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .product-img-box img {
+        .product-img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .product-card:hover .product-img-box img {
-            transform: scale(1.06);
+        .product-card:hover .product-img-container img {
+            transform: scale(1.05);
         }
 
         .product-badge {
@@ -253,26 +286,27 @@
             top: 12px;
             left: 12px;
             background: rgba(0, 85, 255, 0.85);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(6px);
             color: white;
             font-size: 11px;
             font-weight: 600;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 2;
         }
 
-        .product-content {
+        .product-body {
             padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
             flex: 1;
             justify-content: space-between;
         }
 
-        .product-name {
-            font-size: 16px;
+        .product-title {
+            font-size: 15px;
             font-weight: 600;
             color: #ffffff;
             line-height: 1.4;
@@ -282,62 +316,85 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 5px;
         }
 
         .product-price {
             font-size: 20px;
             font-weight: 800;
             color: #3377ff;
-            text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+            text-shadow: 0 0 12px rgba(0, 102, 255, 0.3);
         }
 
-        .btn-details {
+        .btn-card-details {
             background: rgba(0, 102, 255, 0.15);
             border: 1px solid rgba(0, 102, 255, 0.4);
             color: #ffffff;
             font-size: 12px;
             font-weight: 600;
-            padding: 8px 14px;
+            padding: 8px 16px;
             border-radius: 8px;
             transition: 0.3s;
         }
 
-        .product-card:hover .btn-details {
+        .product-card:hover .btn-card-details {
             background: #0066ff;
             border-color: #0066ff;
             box-shadow: 0 0 12px rgba(0, 102, 255, 0.6);
         }
 
-        /* Rodapé Completo e Profissional */
-        footer { 
-            background: #00050d; 
-            border-top: 1px solid rgba(0, 102, 255, 0.2); 
-            padding: 40px 20px 25px 20px; 
-            margin-top: 50px; 
+        /* Botão Flutuante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 35px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: 0.3s;
+            z-index: 999;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
         }
 
-        .footer-content {
+        /* Rodapé */
+        footer { 
+            background: #00040a; 
+            border-top: 1px solid rgba(0, 102, 255, 0.2); 
+            padding: 45px 5% 25px 5%; 
+            margin-top: 60px; 
+        }
+
+        .footer-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 30px;
             align-items: center;
             text-align: center;
         }
 
-        .footer-info h3 {
+        .footer-brand h3 {
             font-family: 'Goudy Bookletter 1911', serif;
-            font-size: 24px;
+            font-size: 26px;
             color: #fff;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             letter-spacing: 1px;
         }
 
-        .footer-info p {
+        .footer-brand p {
             font-size: 13px;
-            color: #7799bb;
+            color: #88aacc;
         }
 
         .footer-badges {
@@ -347,16 +404,16 @@
             gap: 12px;
         }
 
-        .badge-pill {
-            background: rgba(11, 19, 38, 0.8);
+        .footer-badge-pill {
+            background: rgba(10, 20, 40, 0.8);
             border: 1px solid rgba(0, 102, 255, 0.25);
-            padding: 6px 14px;
+            padding: 7px 16px;
             border-radius: 20px;
             font-size: 12px;
-            color: #aaccff;
+            color: #bbf;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .footer-bottom {
@@ -371,35 +428,12 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-
-        /* Botão flutuante do WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #25d366;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            transition: 0.3s;
-            z-index: 999;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-        }
     </style>
 </head>
 
 <body>
 
+    <!-- CABEÇALHO -->
     <header class="animated">
         <div class="logo">
             <h1><a href="index.html">LOJA DO JOATAN</a></h1>
@@ -410,164 +444,166 @@
         </div>
     </header>
 
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="animated">
-        <!-- Banner Principal -->
-        <div class="welcome-banner">
-            <h2>Bem-vindo à LOJA DO JOATAN!</h2>
-            <p>Encontre os melhores produtos com exclusividade e atendimento dedicado.</p>
-            <div class="offer-tag">⚡ Ofertas válidas enquanto durarem os estoques</div>
+        <!-- BANNER HERO -->
+        <div class="hero-banner">
+            <h2>Excelência e Exclusividade em Cada Detalhe</h2>
+            <p>Descubra produtos selecionados com alto padrão de qualidade feitos especialmente para você.</p>
+            <div class="hero-badge">⚡ Condições especiais por tempo limitado</div>
         </div>
 
-        <!-- Barra de Vantagens / Confiança -->
-        <div class="features-bar">
-            <div class="feature-item">
+        <!-- BARRA DE BENEFÍCIOS -->
+        <div class="features-grid">
+            <div class="feature-card">
                 <div class="feature-icon">🚚</div>
-                <div class="feature-text">
-                    <h4>Entrega Rápida</h4>
-                    <p>Agilidade e cuidado no envio</p>
+                <div class="feature-info">
+                    <h4>Envio Ágil</h4>
+                    <p>Entrega rápida e segura</p>
                 </div>
             </div>
-            <div class="feature-item">
+            <div class="feature-card">
                 <div class="feature-icon">🔒</div>
-                <div class="feature-text">
-                    <h4>Compra Segura</h4>
-                    <p>Ambiente protegido e confiável</p>
+                <div class="feature-info">
+                    <h4>Ambiente Seguro</h4>
+                    <p>Proteção total de dados</p>
                 </div>
             </div>
-            <div class="feature-item">
+            <div class="feature-card">
                 <div class="feature-icon">💬</div>
-                <div class="feature-text">
-                    <h4>Suporte Humanizado</h4>
-                    <p>Atendimento direto via WhatsApp</p>
+                <div class="feature-info">
+                    <h4>Atendimento Direto</h4>
+                    <p>Suporte rápido via WhatsApp</p>
                 </div>
             </div>
         </div>
 
-        <!-- Grade com os 6 Produtos -->
-        <div class="section-title">Produtos em Destaque</div>
+        <!-- TÍTULO DA SEÇÃO -->
+        <div class="section-header">
+            <div class="section-title">Produtos em Destaque</div>
+        </div>
 
+        <!-- GRADE DE PRODUTOS -->
         <div class="products-grid">
             <!-- PRODUTO 1 -->
             <a href="produto1.html" class="product-card">
-                <div class="product-img-box">
+                <div class="product-img-container">
                     <span class="product-badge">🔥 Destaque</span>
-                    <img src="FOTO-PRODUTO-1.jpg" alt="Pelúcia Homem Aranha">
+                    <img src="FOTO-PRODUTO-1.jpg" alt="Pelúcia Homem Aranha" onerror="this.style.display='none'">
                 </div>
-                <div class="product-content">
-                    <div class="product-name">PELÚCIA HOMEM ARANHA</div>
+                <div class="product-body">
+                    <div class="product-title">PELÚCIA HOMEM ARANHA</div>
                     <div class="product-footer">
                         <div class="product-price">R$ 149,90</div>
-                        <span class="btn-details">Ver Mais</span>
+                        <span class="btn-card-details">Ver Mais</span>
                     </div>
                 </div>
             </a>
 
             <!-- PRODUTO 2 -->
             <a href="produto2.html" class="product-card">
-                <div class="product-img-box">
+                <div class="product-img-container">
                     <span class="product-badge">✨ Novo</span>
-                    <img src="FOTO-PRODUTO-2.jpg" alt="Produto 2">
+                    <img src="FOTO-PRODUTO-2.jpg" alt="Produto 2" onerror="this.style.display='none'">
                 </div>
-                <div class="product-content">
-                    <div class="product-name">PRODUTO 2</div>
+                <div class="product-body">
+                    <div class="product-title">PRODUTO 2</div>
                     <div class="product-footer">
                         <div class="product-price">R$ 99,90</div>
-                        <span class="btn-details">Ver Mais</span>
+                        <span class="btn-card-details">Ver Mais</span>
                     </div>
                 </div>
             </a>
 
             <!-- PRODUTO 3 -->
             <a href="produto3.html" class="product-card">
-                <div class="product-img-box">
+                <div class="product-img-container">
                     <span class="product-badge">⭐ Especial</span>
-                    <img src="FOTO-PRODUTO-3.jpg" alt="Produto 3">
+                    <img src="FOTO-PRODUTO-3.jpg" alt="Produto 3" onerror="this.style.display='none'">
                 </div>
-                <div class="product-content">
-                    <div class="product-name">PRODUTO 3</div>
+                <div class="product-body">
+                    <div class="product-title">PRODUTO 3</div>
                     <div class="product-footer">
                         <div class="product-price">R$ 120,00</div>
-                        <span class="btn-details">Ver Mais</span>
+                        <span class="btn-card-details">Ver Mais</span>
                     </div>
                 </div>
             </a>
 
             <!-- PRODUTO 4 -->
             <a href="produto4.html" class="product-card">
-                <div class="product-img-box">
+                <div class="product-img-container">
                     <span class="product-badge">🔥 Oferta</span>
-                    <img src="FOTO-PRODUTO-4.jpg" alt="Produto 4">
+                    <img src="FOTO-PRODUTO-4.jpg" alt="Produto 4" onerror="this.style.display='none'">
                 </div>
-                <div class="product-content">
-                    <div class="product-name">PRODUTO 4</div>
+                <div class="product-body">
+                    <div class="product-title">PRODUTO 4</div>
                     <div class="product-footer">
                         <div class="product-price">R$ 89,90</div>
-                        <span class="btn-details">Ver Mais</span>
+                        <span class="btn-card-details">Ver Mais</span>
                     </div>
                 </div>
             </a>
 
             <!-- PRODUTO 5 -->
             <a href="produto5.html" class="product-card">
-                <div class="product-img-box">
+                <div class="product-img-container">
                     <span class="product-badge">✨ Novo</span>
-                    <img src="FOTO-PRODUTO-5.jpg" alt="Produto 5">
+                    <img src="FOTO-PRODUTO-5.jpg" alt="Produto 5" onerror="this.style.display='none'">
                 </div>
-                <div class="product-content">
-                    <div class="product-name">PRODUTO 5</div>
+                <div class="product-body">
+                    <div class="product-title">PRODUTO 5</div>
                     <div class="product-footer">
                         <div class="product-price">R$ 110,00</div>
-                        <span class="btn-details">Ver Mais</span>
+                        <span class="btn-card-details">Ver Mais</span>
                     </div>
                 </div>
             </a>
 
             <!-- PRODUTO 6 -->
             <a href="produto6.html" class="product-card">
-                <div class="product-img-box">
+                <div class="product-img-container">
                     <span class="product-badge">⭐ Top</span>
-                    <img src="FOTO-PRODUTO-6.jpg" alt="Produto 6">
+                    <img src="FOTO-PRODUTO-6.jpg" alt="Produto 6" onerror="this.style.display='none'">
                 </div>
-                <div class="product-content">
-                    <div class="product-name">PRODUTO 6</div>
+                <div class="product-body">
+                    <div class="product-title">PRODUTO 6</div>
                     <div class="product-footer">
                         <div class="product-price">R$ 139,90</div>
-                        <span class="btn-details">Ver Mais</span>
+                        <span class="btn-card-details">Ver Mais</span>
                     </div>
                 </div>
             </a>
         </div>
     </main>
 
-    <!-- Botão Flutuante do WhatsApp -->
-    <a href="https://wa.me/5592993956270?text=Olá!%20Vim%20pelo%20site%20e%20tenho%20uma%20dúvida." target="_blank" class="whatsapp-float">
-        💬 Dúvidas? Fale Conosco
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5592993956270?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20dúvida." target="_blank" class="whatsapp-float">
+        💬 Fale no WhatsApp
     </a>
 
-    <!-- Rodapé Profissional com Selos e Informações -->
+    <!-- RODAPÉ -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-info">
+        <div class="footer-container">
+            <div class="footer-brand">
                 <h3>LOJA DO JOATAN</h3>
-                <p>Qualidade, confiança e praticidade em um só lugar.</p>
+                <p>Compromisso com a sua satisfação e total segurança nas compras.</p>
             </div>
 
-            <!-- Selos de Pagamento e Segurança no Rodapé -->
             <div class="footer-badges">
-                <div class="badge-pill">🔒 Site 100% Seguro</div>
-                <div class="badge-pill">💳 Pagamento Facilitado</div>
-                <div class="badge-pill">⚡ Envio Rápido</div>
-                <div class="badge-pill">🛡️ Proteção de Dados</div>
+                <div class="footer-badge-pill">🔒 Site 100% Protegido</div>
+                <div class="footer-badge-pill">💳 Pagamento Confiável</div>
+                <div class="footer-badge-pill">⚡ Entrega Garantida</div>
             </div>
 
             <div class="footer-bottom">
                 <div>&copy; 2026 LOJA DO JOATAN - Todos os direitos reservados.</div>
-                <div>Feito com dedicação para você.</div>
+                <div>Desenvolvido com excelência.</div>
             </div>
         </div>
     </footer>
 
-    <!-- Script de verificação de sessão Firebase Compat -->
+    <!-- SCRIPT FIREBASE -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBcl5uTVYLbZh6tnXIhp3bJOqX-1nxhDb8",
@@ -600,7 +636,7 @@
                     });
                 };
             } else {
-                userStatus.innerText = "Você não está conectado.";
+                userStatus.innerText = "Visitante";
                 authBtn.innerText = "Entrar / Cadastrar";
                 authBtn.href = "login.html";
                 authBtn.onclick = null;
