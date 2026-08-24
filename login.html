@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login / Cadastro - LOJA DO JOATAN</title>
+    <title>Acesso à Conta - LOJA DO JOATAN</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,12 +29,24 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            overflow-x: hidden;
+        }
+
+        /* Animação suave para os elementos da página */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated-box {
+            animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
 
         header {
-            background: linear-gradient(135deg, #001a33 0%, #000a1a 100%);
-            border-bottom: 1px solid rgba(0, 102, 255, 0.3);
-            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 26, 51, 0.9) 0%, rgba(0, 10, 26, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.25);
+            padding: 20px 40px;
             text-align: center;
         }
 
@@ -48,77 +60,100 @@
         .logo a {
             color: #ffffff;
             text-decoration: none;
-            text-shadow: 0 0 10px rgba(0, 102, 255, 0.8);
+            text-shadow: 0 0 12px rgba(0, 102, 255, 0.8);
+            transition: 0.3s;
         }
+        .logo a:hover { color: #3377ff; }
 
+        /* Container Principal do Formulário */
         .auth-container {
-            max-width: 420px;
+            max-width: 440px;
             width: 90%;
             margin: 40px auto;
-            background: linear-gradient(145deg, #0b1326, #040814);
-            border: 1px solid rgba(0, 102, 255, 0.3);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(145deg, rgba(11, 19, 38, 0.9), rgba(4, 8, 20, 0.95));
+            border: 1px solid rgba(0, 102, 255, 0.35);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 102, 255, 0.15);
+            backdrop-filter: blur(10px);
         }
 
-        /* Botão do Google */
+        .auth-header-text {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .auth-header-text h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .auth-header-text p {
+            font-size: 13px;
+            color: #88aacc;
+        }
+
+        /* Botão do Google Moderno */
         .btn-google {
             width: 100%;
-            padding: 12px;
+            padding: 13px;
             background: #ffffff;
             color: #333333;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 22px;
         }
 
         .btn-google:hover {
-            background: #f1f3f4;
+            background: #f8f9fa;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
         }
 
         .btn-google img {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
         }
 
         .divider {
             display: flex;
             align-items: center;
             text-align: center;
-            color: #6688aa;
+            color: #557799;
             font-size: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .divider::before, .divider::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.2);
         }
 
-        .divider::before {
-            margin-right: 10px;
-        }
+        .divider::before { margin-right: 12px; }
+        .divider::after { margin-left: 12px; }
 
-        .divider::after {
-            margin-left: 10px;
-        }
-
+        /* Abas Estilizadas */
         .tabs {
             display: flex;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
+            background: rgba(0, 10, 26, 0.6);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(0, 102, 255, 0.2);
         }
 
         .tab-btn {
@@ -127,16 +162,17 @@
             background: none;
             border: none;
             color: #88aacc;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            border-radius: 8px;
         }
 
         .tab-btn.active {
+            background: linear-gradient(135deg, #0055ff, #0033cc);
             color: #ffffff;
-            border-bottom-color: #0066ff;
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
         }
 
         .form-group {
@@ -146,49 +182,55 @@
 
         .form-group label {
             display: block;
-            font-size: 13px;
+            font-size: 12px;
+            font-weight: 500;
             margin-bottom: 6px;
-            color: #c0d0e0;
+            color: #aaccff;
+            letter-spacing: 0.5px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 11px 14px;
-            border-radius: 8px;
+            padding: 12px 15px;
+            border-radius: 10px;
             border: 1px solid rgba(0, 102, 255, 0.3);
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 10, 26, 0.5);
             color: #ffffff;
             font-size: 14px;
             outline: none;
-            transition: border 0.3s;
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus {
-            border-color: #0066ff;
-            background: rgba(255, 255, 255, 0.08);
+            border-color: #3377ff;
+            background: rgba(0, 15, 36, 0.8);
+            box-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
         }
 
         .btn-submit {
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #0055ff, #002b80);
+            padding: 13px;
+            background: linear-gradient(135deg, #0055ff, #0033cc);
             color: #ffffff;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 5px;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.35);
         }
 
         .btn-submit:hover {
-            background: linear-gradient(135deg, #3377ff, #003d99);
+            background: linear-gradient(135deg, #3377ff, #0044ee);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
         }
 
         .message-box {
             margin-top: 15px;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             font-size: 13px;
             font-weight: 500;
@@ -203,16 +245,16 @@
         }
 
         .message-box.success {
-            background: rgba(46, 125, 50, 0.85);
-            border: 1px solid #4caf50;
-            color: #ffffff;
+            background: rgba(0, 200, 83, 0.2);
+            border: 1px solid rgba(0, 200, 83, 0.5);
+            color: #69f0ae;
         }
 
         .back-link {
             display: block;
             text-align: center;
-            margin-top: 20px;
-            color: #88aacc;
+            margin-top: 22px;
+            color: #7799bb;
             text-decoration: none;
             font-size: 13px;
             transition: color 0.3s;
@@ -223,12 +265,12 @@
         }
 
         footer {
-            background: #000814;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 20px;
+            background: #00050d;
+            border-top: 1px solid rgba(0, 102, 255, 0.2);
+            padding: 25px;
             text-align: center;
             font-size: 12px;
-            color: #6688aa;
+            color: #557799;
         }
     </style>
 </head>
@@ -242,14 +284,19 @@
     </header>
 
     <main>
-        <div class="auth-container">
-            <!-- Botão de login rápido com Google -->
+        <div class="auth-container animated-box">
+            <div class="auth-header-text">
+                <h2>Identificação da Conta</h2>
+                <p>Acesse sua conta ou cadastre-se para aproveitar a loja</p>
+            </div>
+
+            <!-- Botão do Google -->
             <button type="button" class="btn-google" onclick="loginWithGoogle()">
                 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
                 Continuar com o Google
             </button>
 
-            <div class="divider">ou entre com e-mail</div>
+            <div class="divider">ou use seu e-mail</div>
 
             <div class="tabs">
                 <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Entrar</button>
@@ -259,11 +306,11 @@
             <!-- Form de Login -->
             <form id="login-form" onsubmit="handleAuth(event, 'login')">
                 <div class="form-group">
-                    <label>E-mail</label>
+                    <label>E-MAIL</label>
                     <input type="email" id="login-email" placeholder="seuemail@exemplo.com" required>
                 </div>
                 <div class="form-group">
-                    <label>Senha</label>
+                    <label>SENHA</label>
                     <input type="password" id="login-password" placeholder="••••••••" required>
                 </div>
                 <button type="submit" class="btn-submit">Entrar na Loja</button>
@@ -272,11 +319,11 @@
             <!-- Form de Cadastro -->
             <form id="register-form" onsubmit="handleAuth(event, 'register')" style="display: none;">
                 <div class="form-group">
-                    <label>E-mail</label>
+                    <label>SEU E-MAIL</label>
                     <input type="email" id="register-email" placeholder="seuemail@exemplo.com" required>
                 </div>
                 <div class="form-group">
-                    <label>Senha (mínimo 6 caracteres)</label>
+                    <label>CRIE UMA SENHA (MÍN. 6 CARACTERES)</label>
                     <input type="password" id="register-password" placeholder="••••••••" minlength="6" required>
                 </div>
                 <button type="submit" class="btn-submit">Cadastrar Conta</button>
@@ -284,7 +331,7 @@
 
             <div id="message-box" class="message-box"></div>
 
-            <a href="index.html" class="back-link">&larr; Voltar para a loja</a>
+            <a href="index.html" class="back-link">&larr; Voltar para a página inicial</a>
         </div>
     </main>
 
@@ -335,12 +382,11 @@
             msgBox.className = 'message-box ' + (isError ? 'error' : 'success');
         }
 
-        // Função de Login com o Google
         async function loginWithGoogle() {
             const provider = new firebase.auth.GoogleAuthProvider();
             try {
                 await auth.signInWithPopup(provider);
-                showMessage('Login com Google bem-sucedido!\nRedirecionando...');
+                showMessage('Login com Google bem-sucedido! Redirecionando...');
                 setTimeout(() => { window.location.href = 'index.html'; }, 1500);
             } catch (error) {
                 showMessage('Erro ao entrar com Google: ' + error.message, true);
@@ -358,10 +404,10 @@
 
                 try {
                     await auth.signInWithEmailAndPassword(email, password);
-                    showMessage('Login bem-sucedido!\nRedirecionando...');
+                    showMessage('Login bem-sucedido! Redirecionando...');
                     setTimeout(() => { window.location.href = 'index.html'; }, 1500);
                 } catch (error) {
-                    showMessage('Erro ao entrar: Verifique o e-mail e a senha.', true);
+                    showMessage('Erro ao entrar: E-mail ou senha incorretos.', true);
                 }
             } else {
                 const email = document.getElementById('register-email').value;
@@ -369,11 +415,11 @@
 
                 try {
                     await auth.createUserWithEmailAndPassword(email, password);
-                    showMessage('Cadastro realizado com sucesso!\nRedirecionando...');
+                    showMessage('Conta criada com sucesso! Redirecionando...');
                     setTimeout(() => { window.location.href = 'index.html'; }, 1500);
                 } catch (error) {
                     if(error.code === 'auth/email-already-in-use'){
-                        showMessage('Erro: Este e-mail já está cadastrado.', true);
+                        showMessage('Este e-mail já está cadastrado.', true);
                     } else {
                         showMessage('Erro ao cadastrar: ' + error.message, true);
                     }
